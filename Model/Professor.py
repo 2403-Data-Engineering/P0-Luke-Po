@@ -17,6 +17,7 @@ class Professor:
         return self.department
     def getEmail(self):
         return self.email
+    
     # Setters
     def setProfessorId(self, id):
         self.id = id

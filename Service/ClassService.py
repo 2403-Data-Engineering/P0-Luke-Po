@@ -1,3 +1,4 @@
+from .. import DAO
 class ClassService:
     """Service layer for business logic related to Class operations."""
     
@@ -19,7 +20,7 @@ class ClassService:
         return self.ClassDAO.create(class_data)
     
     def update_class(self, class_id, class_data):
-        """Update an existing class."""
+        """Update an existing class by its ID"""
         return self.ClassDAO.update(class_id, class_data)
     
     def delete_class(self, class_id):

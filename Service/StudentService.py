@@ -1,3 +1,5 @@
+from .. import DAO
+
 class StudentService:
     def __init__(self, StudentDAO):
         self.StudentDAO = StudentDAO
@@ -5,7 +7,7 @@ class StudentService:
     def add_student(self, student):
         self.StudentDAO.add(student)
 
-    def get_student(self, student_id):
+    def get_student_by_id(self, student_id):
         return self.StudentDAO.get(student_id)
 
     def update_student(self, student_id, updated_student):

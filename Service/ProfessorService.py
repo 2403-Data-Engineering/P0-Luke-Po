@@ -1,3 +1,5 @@
+from .. import DAO
+
 class ProfessorService:
     def __init__(self, ProfessorDAO):
         self.ProfessorDAO = ProfessorDAO
