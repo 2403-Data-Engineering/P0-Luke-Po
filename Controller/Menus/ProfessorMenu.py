@@ -1,4 +1,4 @@
-from .menu import Menu
+from .Menu import Menu
 class ProfessorMenu(Menu):
     def render(self) -> None:
         print("Welcome to the Professor Menu. Please select an option:")

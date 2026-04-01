@@ -1,18 +1,19 @@
 
-from Controller.Menu.menu import Menu
-from Controller.Menu.MainMenu import MainMenu
-
-
+from Controller.Menus.Menu import Menu
+from Controller.Menus.MainMenu import MainMenu
+from Service.ProfessorService import ProfessorService
+from Service.StudentService import StudentService
+from Service.ClassService import ClassService
 class FullRegistrationController():
-    def __init__(self, ProfessorService, StudentService, ClassService):
-        self.professor_service = ProfessorService
-        self.student_service = StudentService
-        self.class_service = ClassService
+    def __init__(self, professor_service: ProfessorService, student_service: StudentService, class_service: ClassService):
+        self.professor_service = professor_service
+        self.student_service = student_service
+        self.class_service = class_service
         self.running = True
-        self.menu = MainMenu(self)
+        self.Menu = MainMenu(self)
         
-    def navigate(self, menu: Menu):
-        self.menu = menu
+    def navigate(self, Menu: Menu):
+        self.Menu = Menu
         
     def quit(self):
         self.running = False

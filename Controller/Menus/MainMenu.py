@@ -1,4 +1,4 @@
-from .menu import Menu
+from .Menu import Menu
 from .ProfessorMenu import ProfessorMenu
 from .StudentMenu import StudentMenu
 from .ClassMenu import ClassMenu

@@ -28,11 +28,11 @@ The application performs CRUD operations against a relational database and gener
 
 ### Console Interface
 
-The application should not be written as a single linear script that runs top to bottom. Instead, build a **menu system** — a set of reusable menu screens that the user navigates through. Each menu should be able to display options, accept user input, invoke service methods based on that input, and navigate to other menus. Think of it as a simple screen-based UI: a main menu leads to sub-menus (e.g., "Manage Professors," "Manage Classes"), and each sub-menu provides the relevant CRUD operations before returning the user back.
+The application should not be written as a single linear script that runs top to bottom. Instead, build a **Menu system** — a set of reusable Menu screens that the user navigates through. Each Menu should be able to display options, accept user input, invoke service methods based on that input, and navigate to other menus. Think of it as a simple screen-based UI: a main Menu leads to sub-menus (e.g., "Manage Professors," "Manage Classes"), and each sub-Menu provides the relevant CRUD operations before returning the user back.
 
 ### Architecture
 
-The application should follow a **layered architecture** with three layers: a **presentation layer** (the console menus and all user-facing I/O), a **service layer** (business logic and orchestration), and a **data layer** (all direct database access). The presentation layer calls into the service layer, which in turn calls into the data layer. Menus should never import or call data layer code directly — if a menu needs data, it goes through a service method.
+The application should follow a **layered architecture** with three layers: a **presentation layer** (the console menus and all user-facing I/O), a **service layer** (business logic and orchestration), and a **data layer** (all direct database access). The presentation layer calls into the service layer, which in turn calls into the data layer. Menus should never import or call data layer code directly — if a Menu needs data, it goes through a service method.
 
 ### Report Generation
 
@@ -96,7 +96,7 @@ Every table must have a dedicated primary key column. Use foreign keys to enforc
 
 ### Console Interface
 
-- The application presents a menu-driven console interface for all operations.
+- The application presents a Menu-driven console interface for all operations.
 - Invalid input is handled gracefully with meaningful error messages.
 
 ### Stretch – ORM
