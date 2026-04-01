@@ -14,7 +14,7 @@ class Menu():
         pass
     
     
-    def check_input(self, user_input: str) -> bool:
+    def check_input(self, user_input: str) -> bool: #should i move this into its own class? maybe a utility class?
         return True
 
     
