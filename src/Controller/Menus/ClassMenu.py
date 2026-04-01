@@ -43,10 +43,23 @@ class ClassMenu(Menu):
                 self.controller.navigate(ClassMenu(self.controller))
             case '3':
                 print("Viewing a Specific Class...")
+                c = self.class_controller.get_class_service().get_class_by_id()
+                print(c)
+                self.controller.navigate(ClassMenu(self.controller))
             case '4':
                 print("Updating a Class...")
+                print("Enter the class you want to update in the format required:")
+                print("Class ID, Class Name, Students, Professor ID")
+                class_input = input().split(",")
+                self.class_controller.get_class_service().update_class(int(class_input[0]), class_input[1], class_input[2], int(class_input[3]))
+                self.controller.navigate(ClassMenu(self.controller))
             case '5':
                 print("Deleting a Class...")
+                print("Enter the class id of the class you want to delete:")
+                print("Class ID")
+                class_input = input()
+                self.class_controller.get_class_service().delete_class(class_input)
+                self.controller.navigate(ClassMenu(self.controller))
             case '6':
                 self.controller.navigate(MainMenu(self.controller))
             case _:
