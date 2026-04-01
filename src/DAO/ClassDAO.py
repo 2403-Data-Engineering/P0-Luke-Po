@@ -6,18 +6,18 @@ class ClassDAO:
         """Retrieve a class by its ID."""
         pass
     
-    def create(self, class_data: Class) -> Class:
+    def create_class(self, class_data: Class) -> Class:
         """Create a new class."""
         pass
     
-    def update(self, class_id: int, class_data: Class) -> Class:
+    def update_class(self, class_id: int, class_data: Class) -> Class:
         """Update an existing class by its ID"""
         pass
     
-    def delete(self, class_id: int) -> None:
+    def delete_class(self, class_id: int) -> None:
         """Delete a class by its ID."""
         pass
     
-    def get_all(self) -> list[Class]:
+    def get_all_classes(self) -> list[Class]:
         """Retrieve all classes."""
         pass

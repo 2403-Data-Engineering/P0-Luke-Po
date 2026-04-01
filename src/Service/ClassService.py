@@ -22,11 +22,11 @@ class ClassService:
     
     def update_class(self, class_id: int, class_data: Class) -> Class:
         """Update an existing class by its ID"""
-        return self.class_dao.update(class_id, class_data)
+        return self.class_dao.update_class(class_id, class_data)
     
     def delete_class(self, class_id: int) -> None:
         """Delete a class by ID."""
-        return self.class_dao.delete(class_id)
+        return self.class_dao.delete_class(class_id)
     
     def get_all_classes(self) -> list[Class]:
         """Retrieve all classes."""
