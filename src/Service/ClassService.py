@@ -18,7 +18,7 @@ class ClassService:
     
     def create_class(self, class_data: Class) -> Class:
         """Create a new class."""
-        return self.class_dao.create(class_data)
+        return self.class_dao.create_class(class_data)
     
     def update_class(self, class_id: int, class_data: Class) -> Class:
         """Update an existing class by its ID"""
@@ -30,4 +30,4 @@ class ClassService:
     
     def get_all_classes(self) -> list[Class]:
         """Retrieve all classes."""
-        return self.class_dao.get_all()
+        return self.class_dao.get_all_classes()
