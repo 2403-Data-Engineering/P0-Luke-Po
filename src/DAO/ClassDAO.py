@@ -10,7 +10,7 @@ class ClassDAO:
         """Create a new class."""
         pass
     
-    def update_class(self, class_id: int, class_data: Class) -> Class:
+    def update_class(self, class_id: int, class_data: Class) -> None:
         """Update an existing class by its ID"""
         pass
     

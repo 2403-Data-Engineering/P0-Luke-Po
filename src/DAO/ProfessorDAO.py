@@ -6,7 +6,7 @@ class ProfessorDAO:
     def create_professor(self, professor_data: Professor) -> Professor:
         pass
 
-    def update_professor(self, professor_id: int, professor_data: Professor) -> Professor:
+    def update_professor(self, professor_id: int, professor_data: Professor) -> None:
         pass
 
     def delete_professor(self, professor_id: int) -> None:

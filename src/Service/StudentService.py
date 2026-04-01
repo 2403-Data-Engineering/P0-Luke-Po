@@ -5,13 +5,13 @@ class StudentService:
     def __init__(self, student_dao: StudentDAO):
         self.student_dao = student_dao
 
-    def add_student(self, student: Student) -> None:
-        self.student_dao.add_student(student)
+    def create_student(self, student: Student) -> None:
+        self.student_dao.create_student(student)
 
     def get_student_by_id(self, student_id: int) -> Student:
         return self.student_dao.get_student_by_id(student_id)
 
-    def update_student(self, student_id: int, updated_student: Student) -> Student:
+    def update_student(self, student_id: int, updated_student: Student) -> None:
         self.student_dao.update_student(student_id, updated_student)
 
     def delete_student(self, student_id: int) -> None:
