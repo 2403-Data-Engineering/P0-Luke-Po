@@ -25,6 +25,7 @@ class ProfessorMenu(Menu):
                 professors = self.professor_controller.get_professor_service().get_all_professors()
                 for p in professors:
                     print(p)
+                self.controller.navigate(ProfessorMenu(self.controller))
             case '2':
                 print("Creating a Professor...")
             case '3':

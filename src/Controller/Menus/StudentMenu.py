@@ -24,6 +24,7 @@ class StudentMenu(Menu):
                 students = self.student_controller.get_student_service().get_all_students()
                 for s in students:
                     print(s)
+                self.controller.navigate(StudentMenu(self.controller))
             case '2':
                 print("Creating a Student...")
             case '3':

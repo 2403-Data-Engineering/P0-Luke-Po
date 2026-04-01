@@ -1,4 +1,6 @@
 from Model.Class import Class
+from enum import Enum
+    
 class Student:
     def __init__(self, id: int, first_name: str, last_name: str, year: int, major: str, email: str, classes: list[Class]):
         self.id = id
@@ -40,4 +42,4 @@ class Student:
         self.email = email
     def setClasses(self, classes: list[Class]) -> None:
         self.classes = classes
-    
+

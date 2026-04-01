@@ -14,5 +14,7 @@ class Menu():
         pass
     
     
+    def check_input(self, user_input: str) -> bool:
+        return True
 
     
