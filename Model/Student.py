@@ -1,5 +1,6 @@
+from Model.Class import Class
 class Student:
-    def __init__(self, id, first_name, last_name, year, major, email, classes):
+    def __init__(self, id: int, first_name: str, last_name: str, year: int, major: str, email: str, classes: list[Class]):
         self.id = id
         self.first_name = first_name
         self.last_name = last_name
@@ -9,34 +10,34 @@ class Student:
         self.classes = classes
     
     # Getters
-    def getStudentId(self):
+    def getStudentId(self) -> int:
         return self.id
-    def getFirstName(self):
+    def getFirstName(self) -> str:
         return self.first_name
-    def getLastName(self):
+    def getLastName(self) -> str:
         return self.last_name
-    def getYear(self):
+    def getYear(self) -> int:
         return self.year
-    def getMajor(self):
+    def getMajor(self) -> str:
         return self.major
-    def getEmail(self):
+    def getEmail(self) -> str:
         return self.email
-    def getClasses(self):
+    def getClasses(self) -> list[Class]:
         return self.classes
     
     # Setters
-    def setStudentId(self, id):
+    def setStudentId(self, id: int) -> None:
         self.id = id
-    def setFirstName(self, first_name):
+    def setFirstName(self, first_name: str) -> None:
         self.first_name = first_name
-    def setLastName(self, last_name):
+    def setLastName(self, last_name: str) -> None:
         self.last_name = last_name
-    def setYear(self, year):
+    def setYear(self, year: int) -> None:
         self.year = year
-    def setMajor(self, major):
+    def setMajor(self, major: str) -> None:
         self.major = major
-    def setEmail(self, email):
+    def setEmail(self, email: str) -> None:
         self.email = email
-    def setClasses(self, classes):
+    def setClasses(self, classes: list[Class]) -> None:
         self.classes = classes
     
