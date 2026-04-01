@@ -1,8 +1,12 @@
-from .. import Service
+from ..Service.ProfessorService import ProfessorService
+
 
 class ProfessorController:
     def __init__(self, professor_service):
         self.professor_service = professor_service
+        
+    def get_professor_service(self):
+        return self.professor_service
 
     def create_professor(self, name, department):
         return self.professor_service.create_professor(name, department)

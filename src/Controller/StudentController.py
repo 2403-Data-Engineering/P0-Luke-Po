@@ -1,8 +1,11 @@
-from .. import Service
+from ..Service.StudentService import StudentService
 
 class StudentController:
     def __init__(self, student_service):
         self.student_service = student_service
+        
+    def get_student_service(self):
+        return self.student_service
 
     def create_student(self, student_data):
         return self.student_service.create_student(student_data)
