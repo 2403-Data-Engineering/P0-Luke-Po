@@ -27,11 +27,20 @@ class ClassMenu(Menu):
                 classes = self.class_controller.get_class_service().get_all_classes()
                 for c in classes:
                     print(c)
+                self.controller.navigate(ClassMenu(self.controller))
             case '2':
                 print("Creating a Class...")
                 print("Enter a the class you want to create in the format required:")
                 print("Class Name, Students, Professor ID")
                 
+                class_input = input().split(",")
+                try:
+                    self.class_controller.get_class_service().create_class(class_input[0], class_input[1], int(class_input[2]))
+                except Exception as e:
+                    print("Error creating class, going back to Class Menu")
+                else:
+                    print("Class created successfully!")
+                self.controller.navigate(ClassMenu(self.controller))
             case '3':
                 print("Viewing a Specific Class...")
             case '4':
@@ -42,4 +51,5 @@ class ClassMenu(Menu):
                 self.controller.navigate(MainMenu(self.controller))
             case _:
                 print("Invalid choice, please try again.")
+                self.controller.navigate(ClassMenu(self.controller))
         
