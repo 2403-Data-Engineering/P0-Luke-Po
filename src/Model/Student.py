@@ -1,6 +1,7 @@
-from Model.Course import Course
-from enum import Enum
+from dataclasses import dataclass
+
     
+@dataclass
 class Student:
     def __init__(self, id: int = 0, first_name: str = "Dummy", last_name: str = "Student", year: int = 0, major: str = "Physics", email: str = "dummys@gmail.com"):
         self.id = id
@@ -11,30 +12,30 @@ class Student:
         self.email = email
     
     # Getters
-    def getStudentId(self) -> int:
+    def get_student_id(self) -> int:
         return self.id
-    def getFirstName(self) -> str:
+    def get_first_name(self) -> str:
         return self.first_name
-    def getLastName(self) -> str:
+    def get_last_name(self) -> str:
         return self.last_name
-    def getYear(self) -> int:
+    def get_year(self) -> int:
         return self.year
-    def getMajor(self) -> str:
+    def get_major(self) -> str:
         return self.major
-    def getEmail(self) -> str:
+    def get_email(self) -> str:
         return self.email
     
     # Setters
-    def setStudentId(self, id: int) -> None:
+    def set_student_id(self, id: int) -> None:
         self.id = id
-    def setFirstName(self, first_name: str) -> None:
+    def set_first_name(self, first_name: str) -> None:
         self.first_name = first_name
-    def setLastName(self, last_name: str) -> None:
+    def set_last_name(self, last_name: str) -> None:
         self.last_name = last_name
-    def setYear(self, year: int) -> None:
+    def set_year(self, year: int) -> None:
         self.year = year
-    def setMajor(self, major: str) -> None:
+    def set_major(self, major: str) -> None:
         self.major = major
-    def setEmail(self, email: str) -> None:
+    def set_email(self, email: str) -> None:
         self.email = email
 
