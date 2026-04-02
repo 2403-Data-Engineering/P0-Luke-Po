@@ -1,8 +1,6 @@
 from Controller.Menus.MainMenu import MainMenu
 from ...Service.ClassService import ClassService
 from FullRegistrationController import FullRegistrationController
-
-
 from .Menu import Menu
 class ClassMenu(Menu):
     def __init__(self, controller):

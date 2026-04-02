@@ -4,11 +4,13 @@ class ClassDAO:
     
     def get_by_id(self, class_id: int) -> Class:
         """Retrieve a class by its ID."""
-        pass
+        a = Class()
+        return a
     
     def create_class(self, class_data: Class) -> Class:
         """Create a new class."""
-        pass
+        a = Class()
+        return a
     
     def update_class(self, class_id: int, class_data: Class) -> None:
         """Update an existing class by its ID"""
@@ -20,4 +22,5 @@ class ClassDAO:
     
     def get_all_classes(self) -> list[Class]:
         """Retrieve all classes."""
-        pass
+        a = Class()
+        return [a]
