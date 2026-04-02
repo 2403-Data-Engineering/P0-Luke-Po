@@ -1,4 +1,4 @@
-from Model.Class import Class
+from Model.Course import Course
 from enum import Enum
     
 class Student:

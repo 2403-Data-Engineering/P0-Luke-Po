@@ -1,6 +1,6 @@
 from Controller.FullRegistrationController import FullRegistrationController
 
-from Model.Class import Class
+from Model.Course import Course
 from Model.Professor import Professor
 from Model.Student import Student
 

@@ -1,5 +1,5 @@
 from DAO.ClassDAO import ClassDAO
-from Model.Class import Class
+from Model.Course import Course
 class ClassService:
     """Service layer for business logic related to Class operations."""
     
@@ -12,15 +12,15 @@ class ClassService:
         """
         self.class_dao = class_dao
     
-    def get_class_by_id(self, class_id: int) -> Class:
+    def get_class_by_id(self, class_id: int) -> Course:
         """Retrieve a class by ID."""
         return self.class_dao.get_by_id(class_id)
     
-    def create_class(self, class_data: Class) -> Class:
+    def create_class(self, class_data: Course) -> Course:
         """Create a new class."""
         return self.class_dao.create_class(class_data)
     
-    def update_class(self, class_id: int, class_data: Class) -> None:
+    def update_class(self, class_id: int, class_data: Course) -> None:
         """Update an existing class by its ID"""
         return self.class_dao.update_class(class_id, class_data)
     
@@ -28,6 +28,6 @@ class ClassService:
         """Delete a class by ID."""
         return self.class_dao.delete_class(class_id)
     
-    def get_all_classes(self) -> list[Class]:
+    def get_all_classes(self) -> list[Course]:
         """Retrieve all classes."""
         return self.class_dao.get_all_classes()

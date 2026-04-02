@@ -1,7 +1,7 @@
 from Model.Professor import Professor
 from Model.Student import Student
 
-class Class:
+class Course:
     def __init__(self, id: int=0, name: str="Dummy Class", students: list[Student]=[Student()], professor: Professor=Professor()):
         self.id = id
         self.name = name

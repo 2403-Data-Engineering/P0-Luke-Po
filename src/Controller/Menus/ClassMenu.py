@@ -1,7 +1,11 @@
 from Controller.Menus.MainMenu import MainMenu
 from ...Service.ClassService import ClassService
 from FullRegistrationController import FullRegistrationController
+from ...Model.Course import Course
+from ...Model.Student import Student
+from ...Model.Professor import Professor
 from .Menu import Menu
+import json
 class ClassMenu(Menu):
     def __init__(self, controller):
         super().__init__(controller)
@@ -22,35 +26,43 @@ class ClassMenu(Menu):
             case '1':
                 print("Viewing all Classes...")
                 #need to call the FullRegistrationController's class service
-                classes = self.class_controller.get_class_service().get_all_classes()
+                classes = self.class_controller.get_all_classes()
                 for c in classes:
                     print(c)
                 self.controller.navigate(ClassMenu(self.controller))
             case '2':
                 print("Creating a Class...")
                 print("Enter a the class you want to create in the format required:")
-                print("Class Name, Students, Professor ID")
+                print("Class Name, Professor ID")
                 
                 class_input = input().split(",")
-                try:
-                    self.class_controller.get_class_service().create_class(class_input[0], class_input[1], int(class_input[2]))
-                except Exception as e:
-                    print("Error creating class, going back to Class Menu")
-                else:
-                    print("Class created successfully!")
+                
+                #TODO: Still need to check whether professor id is valid
+                self.class_controller.create_class(Course(0, class_input[0], [], Professor(int(class_input[1]))))
+                
+                # try:
+                #     self.class_controller.create_class(Class(class_input[0], class_input[1], int(class_input[2])))
+                # except Exception as e:
+                #     print("Error creating class, going back to Class Menu")
+                # else:
+                #     print("Class created successfully!")
+                    
+                    
                 self.controller.navigate(ClassMenu(self.controller))
             case '3':
                 print("Viewing a Specific Class...")
-                c = self.class_controller.get_class_service().get_class_by_id()
+                print("Enter the class id of the class you want to view:")
+                class_id_input = input()
+                
+                c = self.class_controller.get_class_by_id(int(class_id_input))
                 print(c)
                 self.controller.navigate(ClassMenu(self.controller))
             case '4':
                 print("Updating a Class...")
                 print("Enter the class you want to update in the format required:")
-                print("Class ID, Class Name, Students, Professor ID")
-                class_input = input().split(",")
-                self.class_controller.get_class_service().update_class(int(class_input[0]), class_input[1], class_input[2], int(class_input[3]))
-                self.controller.navigate(ClassMenu(self.controller))
+                print("Class ID, Class Name, Professor ID")
+                print("EX: 0, Intro to Computer Science, 0")
+
             case '5':
                 print("Deleting a Class...")
                 print("Enter the class id of the class you want to delete:")
