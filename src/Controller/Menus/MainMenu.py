@@ -1,14 +1,14 @@
 from .Menu import Menu
 from .ProfessorMenu import ProfessorMenu
 from .StudentMenu import StudentMenu
-from .ClassMenu import ClassMenu
+from .CourseMenu import CourseMenu
 
 class MainMenu(Menu):
     def render(self) -> None:
         print("Hello, welcome to the University Registration System. Please select an option:")
         print("1. Professor Management")
         print("2. Student Management")
-        print("3. Class Management")
+        print("3. Course Management")
         print("4. Exit")
         
         user_input: str = input().lower()
@@ -19,7 +19,7 @@ class MainMenu(Menu):
             case '2':
                 self.controller.navigate(StudentMenu(self.controller))
             case '3':
-                self.controller.navigate(ClassMenu(self.controller))
+                self.controller.navigate(CourseMenu(self.controller))
             case '4':
                 self.controller.quit()
             case _:

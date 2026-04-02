@@ -1,6 +1,6 @@
-from DAO.ClassDAO import ClassDAO
+from DAO.CourseDAO import ClassDAO
 from Model.Course import Course
-class ClassService():
+class CourseService():
     """Service layer for business logic related to Class operations."""
     
     def __init__(self, class_dao: ClassDAO):

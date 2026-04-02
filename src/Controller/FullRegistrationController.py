@@ -3,28 +3,28 @@ from Controller.Menus.Menu import Menu
 from Controller.Menus.MainMenu import MainMenu
 from Service.ProfessorService import ProfessorService
 from Service.StudentService import StudentService
-from Service.ClassService import ClassService
-from Controller.ClassController import ClassController
+from Service.CourseService import CourseService
+from Controller.CourseController import CourseController
 from Controller.ProfessorController import ProfessorController
 from Controller.StudentController import StudentController
 
 class FullRegistrationController():
-    # def __init__(self, professor_service: ProfessorService, student_service: StudentService, class_service: ClassService):
+    # def __init__(self, professor_service: ProfessorService, student_service: StudentService, course_service: CourseService):
     #     self.professor_service = professor_service
     #     self.student_service = student_service
-    #     self.class_service = class_service
+    #     self.course_service = course_service
     #     self.running = True
     #     self.menu = MainMenu(self)
         
-    def __init__(self, professor_controller: ProfessorController, student_controller: StudentController, class_controller: ClassController):
+    def __init__(self, professor_controller: ProfessorController, student_controller: StudentController, course_controller: CourseController):
         self.professor_controller = professor_controller
         self.student_controller = student_controller
-        self.class_controller = class_controller
+        self.course_controller = course_controller
         self.running = True
         self.menu = MainMenu(self)
         
     def get_controllers(self) -> list:
-        return [self.professor_controller, self.student_controller, self.class_controller]
+        return [self.professor_controller, self.student_controller, self.course_controller]
 
     def navigate(self, menu: Menu) -> None:
         self.menu = menu
