@@ -2,14 +2,13 @@ from Model.Class import Class
 from enum import Enum
     
 class Student:
-    def __init__(self, id: int, first_name: str, last_name: str, year: int, major: str, email: str, classes: list[Class]):
+    def __init__(self, id: int = 0, first_name: str = "Dummy", last_name: str = "Student", year: int = 0, major: str = "Physics", email: str = "dummys@gmail.com"):
         self.id = id
         self.first_name = first_name
         self.last_name = last_name
         self.year = year
         self.major = major
         self.email = email
-        self.classes = classes
     
     # Getters
     def getStudentId(self) -> int:
@@ -24,8 +23,6 @@ class Student:
         return self.major
     def getEmail(self) -> str:
         return self.email
-    def getClasses(self) -> list[Class]:
-        return self.classes
     
     # Setters
     def setStudentId(self, id: int) -> None:
@@ -40,6 +37,4 @@ class Student:
         self.major = major
     def setEmail(self, email: str) -> None:
         self.email = email
-    def setClasses(self, classes: list[Class]) -> None:
-        self.classes = classes
 

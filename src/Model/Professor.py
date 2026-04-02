@@ -1,5 +1,5 @@
 class Professor:
-    def __init__(self, id: int, first_name: str, last_name: str, department: str, email: str):
+    def __init__(self, id: int=0, first_name: str="Dummy", last_name: str="Professor", department: str="Department", email: str="dummyprofessor@gmail.com"):
         self.id = id
         self.first_name = first_name
         self.last_name = last_name

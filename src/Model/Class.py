@@ -2,7 +2,7 @@ from Model.Professor import Professor
 from Model.Student import Student
 
 class Class:
-    def __init__(self, id: int, name: str, students: list[Student], professor: Professor):
+    def __init__(self, id: int=0, name: str="Dummy Class", students: list[Student]=[Student()], professor: Professor=Professor()):
         self.id = id
         self.name = name
         self.students = students
