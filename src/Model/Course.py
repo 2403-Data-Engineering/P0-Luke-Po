@@ -30,7 +30,7 @@ class Course:
         return self.professor
     
     # Setters
-    def set_class_id(self, id: int) -> None:
+    def set_course_id(self, id: int) -> None:
         self.id = id
     def set_name(self, name: str) -> None:
         self.name = name
@@ -38,6 +38,17 @@ class Course:
         self.students = students
     def set_professor(self, professor: Professor) -> None:
         self.professor = professor
+        
+        #adds to end of list
+    def add_student_to_course(self, student) -> Student:
+        self.students.append(student)
+        return student
+    
+    def remove_student_to_course(self, student) -> Student:
+        self.students.remove(student)
+        return student
+        
+        
     def print_course(self) -> str:
         course_string = json.dumps(self, indent=None, default=lambda o: o.__dict__)
         return course_string
