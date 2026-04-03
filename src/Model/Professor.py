@@ -1,8 +1,16 @@
 from dataclasses import dataclass
+import json
 
 
 @dataclass
 class Professor:
+    
+    id : int
+    first_name : str
+    last_name : str
+    department : str
+    email : str
+    
     def __init__(self, id: int=0, first_name: str="Dummy", last_name: str="Professor", department: str="Department", email: str="dummyprofessor@gmail.com"):
         self.id = id
         self.first_name = first_name
@@ -33,3 +41,7 @@ class Professor:
         self.department = department
     def set_email(self, email: str) -> None:
         self.email = email
+        
+    def print_professor(self) -> str:
+        professor_string = json.dumps(self, indent=None, default=lambda o: o.__dict__)
+        return professor_string

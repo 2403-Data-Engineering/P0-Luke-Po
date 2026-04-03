@@ -38,11 +38,24 @@ class main:
         # print(professor)
         # print(professor.__dict__)
         
-        print(Course().__dict__)
-        print(json.dumps(Professor().__dict__))
+        # print(Course().__dict__)
+        # print(json.dumps(Professor().__dict__))
         
-        professor = ParseJSON.parse_professor(json.dumps(Professor().__dict__))
-        print(professor)
-        print(professor.__dict__)
+        # professor = ParseJSON.parse_professor(json.dumps(Professor().__dict__))
+        # print(professor)
+        # print(professor.__dict__)
+        
+        # print(Student().__dict__)
+        
+        #student.__dict__ is how we can convert it into JSON
+        #ParseJSON.parse_student(f"{{{'id': 0, 'first_name': 'Dummy', 'last_name': 'Student', 'year': 0, 'major': 'Physics', 'email': 'dummys@gmail.com'}}}")
+        # student = Student()
+        # course = Course()
+        # prof = Professor()
+        # print(student.print_student())
+        # print(course.print_course())
+        # print(prof.print_professor())
+        
+        
         
         

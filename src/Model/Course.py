@@ -1,10 +1,17 @@
 from dataclasses import dataclass
+import json
+
+
 
 from Model.Professor import Professor
 from Model.Student import Student
 
 @dataclass
 class Course:
+    id : int
+    name : str
+    students : list[Student]
+    professor : Professor
     
     def __init__(self, id: int=0, name: str="Dummy Class", students: list[Student]=[Student()], professor: Professor=Professor()):
         self.id = id
@@ -31,4 +38,7 @@ class Course:
         self.students = students
     def set_professor(self, professor: Professor) -> None:
         self.professor = professor
-    
+    def print_course(self) -> str:
+        course_string = json.dumps(self, indent=None, default=lambda o: o.__dict__)
+        return course_string
+        

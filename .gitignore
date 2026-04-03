@@ -208,4 +208,11 @@ __marimo__/
 
 
 *.properties
+# Ignore environment variable files
 *.ENV
+.env
+.envrc
+venv/
+ENV/
+env.bak/
+venv.bak/
