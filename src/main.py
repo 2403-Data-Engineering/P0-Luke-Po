@@ -49,12 +49,17 @@ class main:
         
         #student.__dict__ is how we can convert it into JSON
         #ParseJSON.parse_student(f"{{{'id': 0, 'first_name': 'Dummy', 'last_name': 'Student', 'year': 0, 'major': 'Physics', 'email': 'dummys@gmail.com'}}}")
-        # student = Student()
-        # course = Course()
-        # prof = Professor()
-        # print(student.print_student())
-        # print(course.print_course())
-        # print(prof.print_professor())
+        student = Student()
+        course = Course()
+        prof = Professor()
+        print(student.print_student())
+        print(course.print_course())
+        print(prof.print_professor())
+        
+        print(ParseJSON.parse_student(student.print_student()))
+        print(ParseJSON.parse_professor(prof.print_professor()))
+        print(ParseJSON.parse_course(course.print_course()))
+
         
         
         
