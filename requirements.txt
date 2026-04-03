@@ -1,0 +1,23 @@
+astroid==4.0.4
+colorama==0.4.6
+dill==0.4.1
+greenlet==3.3.2
+iniconfig==2.3.0
+isort==8.0.1
+mccabe==0.7.0
+mysql-connector-python==9.6.0
+packaging==26.0
+platformdirs==4.9.4
+pluggy==1.6.0
+Pygments==2.20.0
+pylint==4.0.5
+pytest==9.0.2
+SQLAlchemy==2.0.48
+tomlkit==0.14.0
+typing_extensions==4.15.0
+
+
+
+# not code itself, but the requirements for the project and how to handle this specific case
+
+#way to describe specifics for this case is to essentially say hey pip install -r requirements.txt and then it will install all the dependencies for the project, which are listed in this file. This is a common practice in Python projects to manage dependencies. Each line in the requirements.txt file specifies a package and its version that is required for the project to run properly.
