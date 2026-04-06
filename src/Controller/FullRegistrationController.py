@@ -7,7 +7,10 @@ from Service.CourseService import CourseService
 from Controller.CourseController import CourseController
 from Controller.ProfessorController import ProfessorController
 from Controller.StudentController import StudentController
-
+from ..Model.Course import Course
+from ..Model.Student import Student
+from ..Model.Professor import Professor
+from mdutils.mdutils import MdUtils
 class FullRegistrationController():
     # def __init__(self, professor_service: ProfessorService, student_service: StudentService, course_service: CourseService):
     #     self.professor_service = professor_service
@@ -34,4 +37,19 @@ class FullRegistrationController():
         print("Shutting down...")
         
         
-    
+    def print_student_markdown_file(self, student: Student) -> None:
+        markdown_file = MdUtils(file_name="database_markdown_file", title="Student Enrollment Report")
+        name = student.get_first_name() + student.get_last_name() #name of the student up top
+        markdown_file.new_header(level=1, title=name)
+        student_id = student.get_student_id()
+        for course in self.course_controller.get_all_courses():
+            #use map function
+            student_ids = map(lambda x: x.get_student_id(), course.get_students())
+            if (student_id in student_ids):
+                markdown_file.new_header(level=1, title=course.get_name())
+                markdown_file.new_line("")
+                
+        markdown_file.create_md_file() #print the file
+            
+            
+        
