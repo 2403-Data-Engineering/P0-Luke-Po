@@ -6,6 +6,7 @@ greenlet==3.3.2
 iniconfig==2.3.0
 isort==8.0.1
 mccabe==0.7.0
+mdutils==1.8.1
 mysql-connector-python==9.6.0
 packaging==26.0
 platformdirs==4.9.4
