@@ -1,4 +1,5 @@
 from ..Model.Professor import Professor
+from ..Database import db_connection_manager
 class ProfessorDAO:
     def get_professor_by_id(self, professor_id: int) -> Professor:
         pass
@@ -13,4 +14,13 @@ class ProfessorDAO:
         pass
 
     def get_all_professors(self) -> list[Professor]:
-        pass
+        professor_list = []
+        with db_connection_manager.get_connection() as connection:
+            cursor = connection.cursor(dictionary=True)
+            sql = "SELECT * FROM professor"
+            cursor.execute(sql)
+            for row in cursor:
+                print(row)
+                professor_list.append(row)
+            connection.close()
+        return professor_list
