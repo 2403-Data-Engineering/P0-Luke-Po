@@ -1,4 +1,5 @@
 from Model.Student import Student
+from mdutils.mdutils import MdUtils
 
 from ..Service.StudentService import StudentService
 
@@ -9,7 +10,7 @@ class StudentController:
     def get_student_service(self):
         return self.student_service
 
-    def create_student(self, student_data: Student) -> None:
+    def create_student(self, student_data: Student) -> Student:
         return self.student_service.create_student(student_data)
 
     def get_student_by_id(self, student_id: int) -> Student:

@@ -5,7 +5,7 @@ class StudentService:
     def __init__(self, student_dao: StudentDAO):
         self.student_dao = student_dao
 
-    def create_student(self, student: Student) -> None:
+    def create_student(self, student: Student) -> Student:
         self.student_dao.create_student(student)
 
     def get_student_by_id(self, student_id: int) -> Student:
