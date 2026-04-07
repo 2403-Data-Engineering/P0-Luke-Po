@@ -6,7 +6,7 @@ class StudentService:
         self.student_dao = student_dao
 
     def create_student(self, student: Student) -> Student:
-        self.student_dao.create_student(student)
+        return self.student_dao.create_student(student)
 
     def get_student_by_id(self, student_id: int) -> Student:
         return self.student_dao.get_student_by_id(student_id)
