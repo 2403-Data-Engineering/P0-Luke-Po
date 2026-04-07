@@ -5,7 +5,7 @@ class CourseService:
     
     def __init__(self, course_dao: CourseDAO):
         """
-        Initialize the service with a course_dao.
+        Initialize the service with a CourseDAO.
         
         Args:
             course_dao: Data access object for Course entities
@@ -31,3 +31,5 @@ class CourseService:
     def get_all_courses(self) -> list[Course]:
         """Retrieve all courses."""
         return self.course_dao.get_all_courses()
+    
+    
