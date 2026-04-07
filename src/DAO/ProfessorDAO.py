@@ -29,6 +29,7 @@ class ProfessorDAO:
             cursor = connection.cursor(dictionary=True)
             # sql = "INSERT INTO course (course_data) VALUES (%(course_data)s)", {"course_data": course_data}
             cursor.execute("INSERT INTO professor (professor) VALUES (%(professor)s)", {"professor": professor_data})
+            connection.commit()
         return professor_data
 
     def update_professor(self, professor_id: int, professor_data: Professor) -> None:

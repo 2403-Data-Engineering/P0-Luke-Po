@@ -34,6 +34,7 @@ class CourseDAO:
             cursor : MySQLCursor = connection.cursor(dictionary=True) # type: ignore
             # sql = "INSERT INTO course (course_data) VALUES (%(course_data)s)", {"course_data": course_data}
             cursor.execute("INSERT INTO course (course) VALUES (%(course)s)", {"course": course_data})
+            connection.commit()
         return course_data
     
     def update_course(self, course_id: int, course_data: Course) -> None:
