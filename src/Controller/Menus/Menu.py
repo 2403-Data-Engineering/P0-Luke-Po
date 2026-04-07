@@ -1,7 +1,11 @@
 
 # from ... import Model
+from __future__ import annotations
 from abc import abstractmethod
-from FullRegistrationController import FullRegistrationController
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from FullRegistrationController import FullRegistrationController
 
 # abstract class for menu views, each menu view will inherit from this class and implement the render method to display the menu options and handle user input
 # only needs render method
