@@ -1,4 +1,7 @@
 import json
+from Model.Professor import Professor
+from Model.Student import Student
+from Model.Course import Course
 from Model.ParseJSON import ParseJSON
 
 from DAO.CourseDAO import CourseDAO
@@ -14,9 +17,7 @@ from Controller.ProfessorController import ProfessorController
 from Controller.StudentController import StudentController
 from Controller.FullRegistrationController import FullRegistrationController
 
-from Model.Professor import Professor
-from Model.Student import Student
-from Model.Course import Course
+
 
 class main:
     if __name__ == "__main__": #means executing from this file -> standard way to begin an application -> start running from this file anywhere
@@ -64,4 +65,4 @@ class main:
         
         controller = FullRegistrationController(ProfessorController(ProfessorService(ProfessorDAO())), StudentController(StudentService(StudentDAO())), CourseController(CourseService(CourseDAO())))
         
-        controller.print_student_markdown_file(student)
+        # controller.print_student_markdown_file(student)
