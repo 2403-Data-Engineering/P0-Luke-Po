@@ -34,29 +34,30 @@ class CourseMenu(Menu):
                 print("Creating a Course...")
                 print("Enter a the course you want to create in the format required (JSON):")
                 print("""{"id": 0, "name": "Dummy Class", "students": [{"id": 0, "first_name": "Dummy", "last_name": "Student", "year": 0, "major": "Physics", "email": "dummys@gmail.com"}], "professor": {"id": 0, "first_name": "Dummy", "last_name": "Professor", "department": "Department", "email": "dummyprofessor@gmail.com"}}""")
-                
+
                 course_input = input()
-                
-                
                 #TODO: Still need to check whether every id is valid and everything is valid
                 self.course_controller.create_course(ParseJSON.parse_course(course_input))
                 
-                # try:
-                #     self.course_controller.create_course(Course(course_input[0], course_input[1], int(course_input[2])))
-                # except Exception as e:
-                #     print("Error creating course, going back to Course Menu")
-                # else:
-                #     print("Course created successfully!")
-                    
-                    
+                try:
+                    course : Course = ParseJSON.parse_course(course_input)
+                    self.course_controller.create_course(course)
+                    print("Successfully created the Course in the Database!")
+                except json.JSONDecodeError:
+                    print("Unable to Parse, Navigating back to the Course Menu")
+                except Exception:
+                    print("An Error Occurred, Navigating back to Course Menu")
                 self.controller.navigate(CourseMenu(self.controller))
             case '3':
                 print("Viewing a Specific Course...")
                 print("Enter the course id of the course you want to view:")
-                course_id_input = input()
+                course_id_input = int(input())
                 
-                c = self.course_controller.get_course_by_id(int(course_id_input))
-                c.print_course()
+                course : Course = self.course_controller.get_course_by_id(course_id_input)
+                if (course is None):
+                    print("An Error Occured, Navigating back to the Course Menu")
+                else:
+                    course.print_course()
                 self.controller.navigate(CourseMenu(self.controller))
             case '4':
                 print("Updating a Course...")
