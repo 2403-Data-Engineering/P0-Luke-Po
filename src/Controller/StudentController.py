@@ -1,7 +1,7 @@
 from Model.Student import Student
 from mdutils.mdutils import MdUtils
 
-from ..Service.StudentService import StudentService
+from Service.StudentService import StudentService
 
 class StudentController:
     def __init__(self, student_service: StudentService):

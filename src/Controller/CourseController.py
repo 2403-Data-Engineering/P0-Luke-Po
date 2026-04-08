@@ -1,5 +1,5 @@
-from ..Service.CourseService import CourseService
-from ..Model.Course import Course
+from Service.CourseService import CourseService
+from Model.Course import Course
 
 class CourseController:
     def __init__(self, course_service: CourseService):

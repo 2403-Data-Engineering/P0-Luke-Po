@@ -1,5 +1,5 @@
-from ..Model.Student import Student
-from ..Database import db_connection_manager
+from Model.Student import Student
+from Database import db_connection_manager
 from mysql.connector.cursor import MySQLCursor
 class StudentDAO:
     

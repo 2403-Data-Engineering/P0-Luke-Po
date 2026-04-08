@@ -7,9 +7,9 @@ from Service.CourseService import CourseService
 from Controller.CourseController import CourseController
 from Controller.ProfessorController import ProfessorController
 from Controller.StudentController import StudentController
-from ..Model.Course import Course
-from ..Model.Student import Student
-from ..Model.Professor import Professor
+from Model.Course import Course
+from Model.Student import Student
+from Model.Professor import Professor
 from mdutils.mdutils import MdUtils
 class FullRegistrationController():
     # def __init__(self, professor_service: ProfessorService, student_service: StudentService, course_service: CourseService):

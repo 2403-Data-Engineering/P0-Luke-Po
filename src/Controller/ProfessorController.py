@@ -1,5 +1,5 @@
-from ..Service.ProfessorService import ProfessorService
-from ..Model.Professor import Professor
+from Service.ProfessorService import ProfessorService
+from Model.Professor import Professor
 
 
 class ProfessorController:
