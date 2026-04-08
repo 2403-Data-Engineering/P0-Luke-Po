@@ -1,3 +1,5 @@
+from json import JSONDecodeError
+
 from .Menu import Menu
 from Model.ParseJSON import ParseJSON
 from Model.Student import Student
@@ -48,9 +50,17 @@ class StudentMenu(Menu):
                 self.controller.navigate(StudentMenu(self.controller))
             case '4':
                 print("Updating a Student...")
-                print("Enter the Student you want to update in the format required (JSON):")
-                student_input = input()
-                self.student_controller.update_student(ParseJSON.parse_student(student_input))
+                print("Enter the Student you want to update in the format required (JSON) (Remember to use double quotes for every field and string)")
+                print("The format is listed below:")
+                print("""{"id": 2, "first_name": "Luke", "last_name": "Po", "year": 4, "major": "Computer Science", "email": "luke486@revature.net"}""")
+                try:
+                    student : Student = ParseJSON.parse_student(input())
+                    self.student_controller.update_student(student)
+                    print("Update Complete!")
+                except JSONDecodeError:
+                    print("Unable to Parse, Navigating back to the Student Menu")
+                except Exception:
+                    print("An Error Occured, Navigating back to the Student Menu")
                 self.controller.navigate(StudentMenu(self.controller))
             case '5':
                 print("Deleting a Student...")
