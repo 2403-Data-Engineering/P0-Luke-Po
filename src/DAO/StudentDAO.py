@@ -19,7 +19,7 @@ class StudentDAO:
         """Retrieve a student by its ID."""
         with db_connection_manager.get_connection() as connection:
             cursor: MySQLCursor = connection.cursor(dictionary=True) # type: ignore
-            cursor.execute("SELECT * FROM student WHERE id = %(student_id)s", [student_id])
+            cursor.execute("SELECT * FROM student WHERE id = %s", [student_id])
             return cursor.fetchone() # type: ignore
         
     def create_student(self, student_data: Student) -> None:

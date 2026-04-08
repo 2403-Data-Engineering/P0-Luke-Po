@@ -8,7 +8,7 @@ class ProfessorDAO:
         professor_list = []
         with db_connection_manager.get_connection() as connection:
             cursor: MySQLCursor = connection.cursor(dictionary=True)  # type: ignore
-            sql = "SELECT * FROM professor" 
+            sql = "SELECT * FROM professor"
             cursor.execute(sql)
             for row in cursor:
                 professor_list.append(row)
@@ -21,7 +21,7 @@ class ProfessorDAO:
             cursor = connection.cursor(dictionary=True) #type: ignore set setting to dictionary
             sql = "SELECT * FROM professor WHERE id = %s"
             cursor.execute(sql, [professor_id])
-        return cursor.fetchone()
+            return cursor.fetchone()
 
     def create_professor(self, professor_data: Professor) -> None:
         """Create a new professor."""

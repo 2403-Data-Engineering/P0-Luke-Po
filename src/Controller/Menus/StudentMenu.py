@@ -38,12 +38,13 @@ class StudentMenu(Menu):
             case '3':
                 print("Viewing a Specific Student...")
                 print("Enter the student id of the student you want to view:")
-                student_id_input = int(input())
+                student_id_input = int(input()) #get the student id from input
+                #find the student from id
                 student : Student = self.student_controller.get_student_by_id(student_id_input)
                 if (student is None):
-                    raise ValueError("Invalid student id")
+                    print("An Error Occured, Navigating back to the Student Menu")
                 else:
-                    print(student.print_student())
+                    print(student)
                 self.controller.navigate(StudentMenu(self.controller))
             case '4':
                 print("Updating a Student...")

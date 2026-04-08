@@ -15,6 +15,7 @@ class StudentController:
 
     def get_student_by_id(self, student_id: int) -> Student:
         return self.student_service.get_student_by_id(student_id)
+            
 
     def update_student(self, student_data: Student) -> None:
         return self.student_service.update_student(student_data)
