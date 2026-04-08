@@ -21,7 +21,7 @@ class ProfessorDAO:
             cursor = connection.cursor(dictionary=True) #type: ignore set setting to dictionary
             sql = "SELECT * FROM professor WHERE id = %s"
             cursor.execute(sql, [professor_id])
-            return cursor.fetchone()
+            return cursor.fetchone() # type: ignore
 
     def create_professor(self, professor_data: Professor) -> None:
         """Create a new professor."""

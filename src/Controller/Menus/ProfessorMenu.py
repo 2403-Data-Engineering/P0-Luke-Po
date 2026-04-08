@@ -46,6 +46,14 @@ class ProfessorMenu(Menu):
                 self.controller.navigate(ProfessorMenu(self.controller))
             case '3':
                 print("Viewing a Specific Professor...")
+                print("Enter the professor id of the professor you want to view:")
+                professor_id_input = int(input()) #get the professor id from input
+                #find the professor from id
+                professor : Professor = self.professor_controller.get_professor_by_id(professor_id_input)
+                if (professor is None):
+                    print("An Error Occured, Navigating back to the Professor Menu")
+                else:
+                    print(professor)
                 self.controller.navigate(ProfessorMenu(self.controller))
             case '4':
                 print("Updating a Professor...")
@@ -63,6 +71,13 @@ class ProfessorMenu(Menu):
                 self.controller.navigate(ProfessorMenu(self.controller))
             case '5':
                 print("Deleting a Professor...")
+                print("Enter the Professor ID of the Professor you wish to delete")
+                professor_id = int(input())
+                try:
+                    self.professor_controller.delete_professor(professor_id)
+                    print("Deletion Complete!")
+                except Exception:
+                    print("Unable to delete specified Student")
                 self.controller.navigate(ProfessorMenu(self.controller))
             case '6':
                 from Controller.Menus.MainMenu import MainMenu
