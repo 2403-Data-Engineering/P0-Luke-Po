@@ -16,9 +16,9 @@ class CourseService:
         """Retrieve a course by ID."""
         return self.course_dao.get_course_by_id(course_id)
     
-    def create_course(self, course_data: Course) -> Course:
+    def create_course(self, course_data: Course) -> None:
         """Create a new course."""
-        return self.course_dao.create_course(course_data)
+        self.course_dao.create_course(course_data)
     
     def update_course(self, course_id: int, course_data: Course) -> None:
         """Update an existing course by its ID"""

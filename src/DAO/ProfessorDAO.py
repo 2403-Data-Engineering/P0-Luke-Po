@@ -23,14 +23,14 @@ class ProfessorDAO:
             cursor.execute(sql, [professor_id])
         return cursor.fetchone()
 
-    def create_professor(self, professor_data: Professor) -> Professor:
+    def create_professor(self, professor_data: Professor) -> None:
         """Create a new professor."""
         with db_connection_manager.get_connection() as connection:
             cursor = connection.cursor(dictionary=True)
             # sql = "INSERT INTO course (course_data) VALUES (%(course_data)s)", {"course_data": course_data}
             cursor.execute("INSERT INTO professor (professor) VALUES (%(professor)s)", {"professor": professor_data})
-            connection.commit()
-        return professor_data
+            new_id = cursor.lastrowid
+            professor_data.set_professor_id(new_id)
 
     def update_professor(self, professor_id: int, professor_data: Professor) -> None:
         pass

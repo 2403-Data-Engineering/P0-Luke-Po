@@ -8,17 +8,17 @@ class CourseController:
     def get_course_service(self) -> CourseService:
         return self.course_service
 
-    def create_course(self, course_data: Course) -> Course:
-        return self.course_service.create_course(course_data)
+    def create_course(self, course_data: Course) -> None:
+        self.course_service.create_course(course_data)
 
     def get_course_by_id(self, course_data: int) -> Course:
         return self.course_service.get_course_by_id(course_data)
 
     def update_course(self, course_id: int, course_data: Course) -> None:
-        return self.course_service.update_course(course_id, course_data)
+        self.course_service.update_course(course_id, course_data)
 
     def delete_course(self, course_id: int) -> None:
-        return self.course_service.delete_course(course_id)
+        self.course_service.delete_course(course_id)
     
     def get_all_courses(self) -> list[Course]:
         return self.course_service.get_all_courses()

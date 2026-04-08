@@ -9,8 +9,8 @@ class ProfessorService:
         return self.professor_dao.get_professor_by_id(professor_id)
 
 
-    def create_professor(self, professor_data: Professor) -> Professor:
-        return self.professor_dao.create_professor(professor_data)
+    def create_professor(self, professor_data: Professor) -> None:
+        self.professor_dao.create_professor(professor_data)
 
     def update_professor(self, professor_id: int, professor_data: Professor) -> None:
         return self.professor_dao.update_professor(professor_id, professor_data)

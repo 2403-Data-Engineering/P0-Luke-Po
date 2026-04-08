@@ -1,6 +1,7 @@
-from ..Model.Course import Course
+
 from ..Model.Student import Student
 from ..Model.Professor import Professor
+from ..Model.Course import Course
 from ..Database import db_connection_manager
 from mysql.connector.cursor import MySQLCursor
 class CourseDAO:
@@ -28,7 +29,7 @@ class CourseDAO:
             cursor.execute(sql, [course_id])
         return cursor.fetchone()
     
-    def create_course(self, course_data: Course) -> Course:
+    def create_course(self, course_data: Course) -> None:
         course_name = course_data.get_name()
         course_students = course_data.get_students()
         course_professor = course_data.get_professor()
@@ -39,7 +40,6 @@ class CourseDAO:
             cursor.execute("INSERT INTO course (name, students, professor) VALUES (%(name)s, %(students)s, %(professor)s)", {'name': course_name, 'students': course_students, 'professor': course_professor})
             connection.commit()
             new_id = cursor.lastrowid
-        return course_data.set_course_id(new_id)
     
     def update_course(self, course_id: int, course_data: Course) -> None:
         course_name = course_data.get_name()

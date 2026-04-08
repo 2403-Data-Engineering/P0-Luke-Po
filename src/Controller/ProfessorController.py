@@ -9,8 +9,8 @@ class ProfessorController:
     def get_professor_service(self) -> ProfessorService:
         return self.professor_service
 
-    def create_professor(self, professor_data: Professor) -> Professor:
-        return self.professor_service.create_professor(professor_data)
+    def create_professor(self, professor_data: Professor) -> None:
+        self.professor_service.create_professor(professor_data)
 
     def get_professor_by_id(self, professor_id: int) -> Professor:
         return self.professor_service.get_professor_by_id(professor_id)
