@@ -66,7 +66,10 @@ class StudentMenu(Menu):
                 print("Deleting a Student...")
                 print("Enter the Student ID of the Student you wish to delete")
                 student_id_input = int(input())
-                self.student_controller.delete_student(student_id_input)
+                try:
+                    self.student_controller.delete_student(student_id_input)
+                except Exception:
+                    print("Unable to delete specified Student")
                 self.controller.navigate(StudentMenu(self.controller))
             case '6':
                 from Controller.Menus.MainMenu import MainMenu

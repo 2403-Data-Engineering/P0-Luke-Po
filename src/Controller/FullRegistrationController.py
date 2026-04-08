@@ -12,12 +12,6 @@ from Model.Student import Student
 from Model.Professor import Professor
 from mdutils.mdutils import MdUtils
 class FullRegistrationController():
-    # def __init__(self, professor_service: ProfessorService, student_service: StudentService, course_service: CourseService):
-    #     self.professor_service = professor_service
-    #     self.student_service = student_service
-    #     self.course_service = course_service
-    #     self.running = True
-    #     self.menu = MainMenu(self)
         
     def __init__(self, professor_controller: ProfessorController, student_controller: StudentController, course_controller: CourseController):
         self.professor_controller = professor_controller
