@@ -1,3 +1,6 @@
+from Model.ParseJSON import ParseJSON
+from Model.Professor import Professor
+
 from .Menu import Menu
 from Service.ProfessorService import ProfessorService
 
@@ -25,12 +28,27 @@ class ProfessorMenu(Menu):
                 self.controller.navigate(ProfessorMenu(self.controller))
             case '2':
                 print("Creating a Professor...")
+                print("Enter a Professor you want to create in the format required (JSON):")
+                print("Note that the id inputted does not matter when creating a Professor")
+                print("EXAMPLE:")
+                print("""{"id": 0, "first_name": "Dummy", "last_name": "Professor", "department": "Science", "email": "dummyproff@university.com"}""")
+                professor_input = input()
+                try:
+                    professor : Professor = ParseJSON.parse_professor(professor_input)
+                    self.professor_controller.create_professor(professor)
+                    print("Successfully created the Professor in the Database!")
+                except Exception:
+                    print("Could not parse the professor from input, Navigating back to Professor Menu")
+                self.controller.navigate(ProfessorMenu(self.controller))
             case '3':
                 print("Viewing a Specific Professor...")
+                self.controller.navigate(ProfessorMenu(self.controller))
             case '4':
                 print("Updating a Professor...")
+                self.controller.navigate(ProfessorMenu(self.controller))
             case '5':
                 print("Deleting a Professor...")
+                self.controller.navigate(ProfessorMenu(self.controller))
             case '6':
                 from Controller.Menus.MainMenu import MainMenu
                 self.controller.navigate(MainMenu(self.controller))

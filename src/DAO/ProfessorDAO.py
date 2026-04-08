@@ -25,10 +25,14 @@ class ProfessorDAO:
 
     def create_professor(self, professor_data: Professor) -> None:
         """Create a new professor."""
+        professor_first_name = professor_data.get_first_name()
+        professor_last_name = professor_data.get_last_name()
+        professor_department = professor_data.get_department()
+        professor_email = professor_data.get_email()
         with db_connection_manager.get_connection() as connection:
             cursor = connection.cursor(dictionary=True)
-            # sql = "INSERT INTO course (course_data) VALUES (%(course_data)s)", {"course_data": course_data}
-            cursor.execute("INSERT INTO professor (professor) VALUES (%(professor)s)", {"professor": professor_data})
+            cursor.execute("INSERT INTO professor (first_name, last_name, department, email) VALUES (%(first_name)s, %(last_name)s, %(department)s, %(email)s)", {'first_name': professor_first_name, 'last_name': professor_last_name, 'department': professor_department, 'email': professor_email})
+            
             new_id = cursor.lastrowid
             professor_data.set_professor_id(new_id)
 
