@@ -37,15 +37,7 @@ class main:
         while(controller.running):
             controller.menu.render()
         
-        print("quitting application")
-        
-        #python project is separate set of files, but they could be not linked to the rest of the project
-        # controller = FullRegistrationController(ProfessorService(ProfessorDAO()), StudentService(StudentDAO()), ClassService(ClassDAO()))
-
-        # while(controller.running):
-        #     controller.menu.render()
-            
-        # print("quitting application...")
+        print("Quitting Application")
         
         
         # student = Student()
@@ -60,8 +52,3 @@ class main:
         # print(ParseJSON.parse_course(course.print_course()))
         # course.add_student_to_course(Student(1, "student2", "test", 1, "CS", "asdfsad"))
         # print(ParseJSON.parse_course(course.print_course()))
-
-        
-        # controller = FullRegistrationController(ProfessorController(ProfessorService(ProfessorDAO())), StudentController(StudentService(StudentDAO())), CourseController(CourseService(CourseDAO())))
-        
-        # controller.print_student_markdown_file(student)

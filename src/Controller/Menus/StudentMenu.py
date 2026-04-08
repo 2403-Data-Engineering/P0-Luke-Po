@@ -1,4 +1,5 @@
 from .Menu import Menu
+from Model.ParseJSON import ParseJSON
 from Controller.Menus.MainMenu import MainMenu
 from Service.StudentService import StudentService
 
@@ -26,6 +27,11 @@ class StudentMenu(Menu):
                 self.controller.navigate(StudentMenu(self.controller))
             case '2':
                 print("Creating a Student...")
+                print("Enter a Student you want to create in the format required (JSON):")
+                print("""{"id": 0, "first_name": "Dummy", "last_name": "Student", "year": 0, "major": "Physics", "email": "dummys@gmail.com"}""")
+                course_input = input()
+                self.student_controller.create_student(ParseJSON.parse_student(course_input))
+                self.controller.navigate(StudentMenu(self.controller))
             case '3':
                 print("Viewing a Specific Student...")
             case '4':

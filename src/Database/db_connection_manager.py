@@ -15,7 +15,7 @@ def get_connection():
     return mysql.connector.connect(
         host = os.getenv("HOST"),
         user = os.getenv("DB_USER"),
-        password = os.getenv("PASS"),
+        password = os.getenv("PASSWORD"),
         port = os.getenv("PORT"),
         database = os.getenv("DB"),
         autocommit=True #works to auto commit
