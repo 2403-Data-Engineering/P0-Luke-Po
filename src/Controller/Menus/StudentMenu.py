@@ -1,5 +1,6 @@
 from .Menu import Menu
 from Model.ParseJSON import ParseJSON
+from Model.Student import Student
 from Controller.Menus.MainMenu import MainMenu
 from Service.StudentService import StudentService
 
@@ -28,16 +29,34 @@ class StudentMenu(Menu):
             case '2':
                 print("Creating a Student...")
                 print("Enter a Student you want to create in the format required (JSON):")
+                print("Note that the id inputted does not matter when creating a student")
+                print("EXAMPLE:")
                 print("""{"id": 0, "first_name": "Dummy", "last_name": "Student", "year": 0, "major": "Physics", "email": "dummys@gmail.com"}""")
-                course_input = input()
-                self.student_controller.create_student(ParseJSON.parse_student(course_input))
+                student_input = input()
+                self.student_controller.create_student(ParseJSON.parse_student(student_input))
                 self.controller.navigate(StudentMenu(self.controller))
             case '3':
                 print("Viewing a Specific Student...")
+                print("Enter the student id of the student you want to view:")
+                student_id_input = int(input())
+                student : Student = self.student_controller.get_student_by_id(student_id_input)
+                if (student is None):
+                    raise ValueError("Invalid student id")
+                else:
+                    print(student.print_student())
+                self.controller.navigate(StudentMenu(self.controller))
             case '4':
                 print("Updating a Student...")
+                print("Enter the Student you want to update in the format required (JSON):")
+                student_input = input()
+                self.student_controller.update_student(ParseJSON.parse_student(student_input))
+                self.controller.navigate(StudentMenu(self.controller))
             case '5':
                 print("Deleting a Student...")
+                print("Enter the Student ID of the Student you wish to delete")
+                student_id_input = int(input())
+                self.student_controller.delete_student(student_id_input)
+                self.controller.navigate(StudentMenu(self.controller))
             case '6':
                 from Controller.Menus.MainMenu import MainMenu
                 self.controller.navigate(MainMenu(self.controller))

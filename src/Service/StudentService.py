@@ -11,8 +11,8 @@ class StudentService:
     def get_student_by_id(self, student_id: int) -> Student:
         return self.student_dao.get_student_by_id(student_id)
 
-    def update_student(self, student_id: int, updated_student: Student) -> None:
-        self.student_dao.update_student(student_id, updated_student)
+    def update_student(self, updated_student: Student) -> None:
+        self.student_dao.update_student(updated_student)
 
     def delete_student(self, student_id: int) -> None:
         self.student_dao.delete_student(student_id)

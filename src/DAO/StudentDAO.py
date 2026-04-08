@@ -19,10 +19,9 @@ class StudentDAO:
         """Retrieve a student by its ID."""
         with db_connection_manager.get_connection() as connection:
             cursor: MySQLCursor = connection.cursor(dictionary=True) # type: ignore
-            sql = "SELECT * FROM student WHERE id = %(student_id)s"
-            cursor.execute(sql, {'student_id': student_id})
-        return cursor.fetchone()
-    
+            cursor.execute("SELECT * FROM student WHERE id = %(student_id)s", [student_id])
+            return cursor.fetchone() # type: ignore
+        
     def create_student(self, student_data: Student) -> None:
         student_first_name = student_data.get_first_name()
         student_last_name = student_data.get_last_name()
@@ -37,7 +36,7 @@ class StudentDAO:
             new_id = cursor.lastrowid
             student_data.set_student_id(new_id)
 
-    def update_student(self, student_id: int, updated_student: Student) -> None:
+    def update_student(self, updated_student: Student) -> None:
         student_first_name = updated_student.get_first_name()
         student_last_name = updated_student.get_last_name()
         student_year = updated_student.get_year()
@@ -46,7 +45,7 @@ class StudentDAO:
         with db_connection_manager.get_connection() as connection:
             cursor: MySQLCursor = connection.cursor(dictionary=True) # type: ignore
             cursor.execute("UPDATE student SET first_name = %(first_name)s, last_name = %(last_name)s, year = %(year)s, major = %(major)s, email = %(email)s WHERE id = %(id)s", {'first_name': student_first_name, 'last_name': student_last_name, 'year': student_year, 'major': student_major, 'email': student_email, 'id': updated_student.get_student_id()})
-        
+        return 
 
     def delete_student(self, student_id: int) -> None:
         with db_connection_manager.get_connection() as connection:

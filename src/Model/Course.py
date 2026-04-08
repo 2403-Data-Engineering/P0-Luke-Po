@@ -13,7 +13,7 @@ class Course:
     students : list[Student]
     professor : Professor
     
-    def __init__(self, id: int=0, name: str="Dummy Class", students: list[Student]=[Student()], professor: Professor=Professor()):
+    def __init__(self, id: int, name: str, students: list[Student], professor: Professor):
         self.id = id
         self.name = name
         self.students = students
