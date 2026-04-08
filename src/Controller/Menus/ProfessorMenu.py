@@ -1,8 +1,5 @@
 from .Menu import Menu
-from Controller.Menus.MainMenu import MainMenu
-from FullRegistrationController import FullRegistrationController
-from ...Service.ProfessorService import ProfessorService
-
+from Service.ProfessorService import ProfessorService
 
 class ProfessorMenu(Menu):
     def __init__(self, controller):
@@ -35,6 +32,7 @@ class ProfessorMenu(Menu):
             case '5':
                 print("Deleting a Professor...")
             case '6':
+                from Controller.Menus.MainMenu import MainMenu
                 self.controller.navigate(MainMenu(self.controller))
             case _:
                 print("Invalid choice, please try again.")

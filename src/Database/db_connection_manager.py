@@ -35,10 +35,10 @@ def get_connection():
         
 # def get_message_by_id(id: int) -> None:
 #     with get_connection() as conn:
-#         cursor = conn.cursor(dictionary=True) #set setting to dictionary
-#         sql = "SELECT * FROM database WHERE id = %s", {id}
-#         cursor.execute(*sql)
-#         return cursor[0]
+        # cursor = conn.cursor(dictionary=True) #set setting to dictionary
+        # sql = "SELECT * FROM database WHERE id = %s", {id}
+        # cursor.execute(*sql)
+        # return cursor[0]
         
             
 # def create_message(message: str) -> None:

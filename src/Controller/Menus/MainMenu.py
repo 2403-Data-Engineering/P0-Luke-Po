@@ -1,7 +1,8 @@
 from .Menu import Menu
-from .ProfessorMenu import ProfessorMenu
-from .StudentMenu import StudentMenu
-from .CourseMenu import CourseMenu
+
+
+
+
 
 class MainMenu(Menu):
     def render(self) -> None:
@@ -15,10 +16,13 @@ class MainMenu(Menu):
         
         match user_input:
             case '1':
+                from .ProfessorMenu import ProfessorMenu
                 self.controller.navigate(ProfessorMenu(self.controller))
             case '2':
+                from .StudentMenu import StudentMenu
                 self.controller.navigate(StudentMenu(self.controller))
             case '3':
+                from .CourseMenu import CourseMenu
                 self.controller.navigate(CourseMenu(self.controller))
             case '4':
                 self.controller.quit()

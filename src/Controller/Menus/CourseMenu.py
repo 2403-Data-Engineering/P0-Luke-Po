@@ -1,10 +1,9 @@
 from Controller.Menus.MainMenu import MainMenu
 from Model.ParseJSON import ParseJSON
-from ...Service.CourseService import CourseService
-from FullRegistrationController import FullRegistrationController
-from ...Model.Course import Course
-from ...Model.Student import Student
-from ...Model.Professor import Professor
+from Service.CourseService import CourseService
+from Model.Course import Course
+from Model.Student import Student
+from Model.Professor import Professor
 from .Menu import Menu
 import json
 class CourseMenu(Menu):
@@ -92,6 +91,7 @@ class CourseMenu(Menu):
                 #TODO
                 pass
             case '3':
+                from Controller.Menus.MainMenu import MainMenu
                 self.controller.navigate(MainMenu(self.controller))
             case _:
                 print("Invalid choice, please try again")

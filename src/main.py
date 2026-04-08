@@ -21,6 +21,24 @@ from Controller.FullRegistrationController import FullRegistrationController
 
 class main:
     if __name__ == "__main__": #means executing from this file -> standard way to begin an application -> start running from this file anywhere
+        professor_dao = ProfessorDAO()
+        student_dao = StudentDAO()
+        course_dao = CourseDAO()
+        
+        professor_service = ProfessorService(professor_dao)
+        student_service = StudentService(student_dao)
+        course_service = CourseService(course_dao)
+        
+        professor_controller = ProfessorController(professor_service)
+        student_controller = StudentController(student_service)
+        course_controller = CourseController(course_service)
+        controller = FullRegistrationController(professor_controller, student_controller, course_controller)
+        
+        while(controller.running):
+            controller.menu.render()
+        
+        print("quitting application")
+        
         #python project is separate set of files, but they could be not linked to the rest of the project
         # controller = FullRegistrationController(ProfessorService(ProfessorDAO()), StudentService(StudentDAO()), ClassService(ClassDAO()))
 
@@ -29,40 +47,21 @@ class main:
             
         # print("quitting application...")
         
-        # print(Professor().__dict__)
-        # print(json.dumps(Professor().__dict__))
         
-        # professor = ParseJSON.parse_professor(json.dumps(Professor().__dict__))
-        # print(professor)
-        # print(professor.__dict__)
+        # student = Student()
+        # course = Course()
+        # prof = Professor()
+        # print(student.print_student())
+        # print(course.print_course())
+        # print(prof.print_professor())
         
-        # print(Course().__dict__)
-        # print(json.dumps(Professor().__dict__))
-        
-        # professor = ParseJSON.parse_professor(json.dumps(Professor().__dict__))
-        # print(professor)
-        # print(professor.__dict__)
-        
-        # print(Student().__dict__)
-        
-        #student.__dict__ is how we can convert it into JSON
-        #ParseJSON.parse_student(f"{{{'id': 0, 'first_name': 'Dummy', 'last_name': 'Student', 'year': 0, 'major': 'Physics', 'email': 'dummys@gmail.com'}}}")
-        
-        
-        student = Student()
-        course = Course()
-        prof = Professor()
-        print(student.print_student())
-        print(course.print_course())
-        print(prof.print_professor())
-        
-        print(ParseJSON.parse_student(student.print_student()))
-        print(ParseJSON.parse_professor(prof.print_professor()))
-        print(ParseJSON.parse_course(course.print_course()))
-        course.add_student_to_course(Student(1, "student2", "test", 1, "CS", "asdfsad"))
-        print(ParseJSON.parse_course(course.print_course()))
+        # print(ParseJSON.parse_student(student.print_student()))
+        # print(ParseJSON.parse_professor(prof.print_professor()))
+        # print(ParseJSON.parse_course(course.print_course()))
+        # course.add_student_to_course(Student(1, "student2", "test", 1, "CS", "asdfsad"))
+        # print(ParseJSON.parse_course(course.print_course()))
 
         
-        controller = FullRegistrationController(ProfessorController(ProfessorService(ProfessorDAO())), StudentController(StudentService(StudentDAO())), CourseController(CourseService(CourseDAO())))
+        # controller = FullRegistrationController(ProfessorController(ProfessorService(ProfessorDAO())), StudentController(StudentService(StudentDAO())), CourseController(CourseService(CourseDAO())))
         
         # controller.print_student_markdown_file(student)
