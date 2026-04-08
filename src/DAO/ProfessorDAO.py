@@ -36,9 +36,17 @@ class ProfessorDAO:
             new_id = cursor.lastrowid
             professor_data.set_professor_id(new_id)
 
-    def update_professor(self, professor_id: int, professor_data: Professor) -> None:
-        pass
+    def update_professor(self, professor_data: Professor) -> None:
+        professor_first_name = professor_data.get_first_name()
+        professor_last_name = professor_data.get_last_name()
+        professor_department = professor_data.get_department()
+        professor_email = professor_data.get_email()
+        with db_connection_manager.get_connection() as connection:
+            cursor: MySQLCursor = connection.cursor(dictionary=True) # type: ignore
+            cursor.execute("UPDATE professor SET first_name = %(first_name)s, last_name = %(last_name)s, department = %(department)s, email = %(email)s WHERE id = %(id)s", {'first_name': professor_first_name, 'last_name': professor_last_name, 'department': professor_department, 'email': professor_email, 'id': professor_data.get_professor_id()})
 
     def delete_professor(self, professor_id: int) -> None:
-        pass
+        with db_connection_manager.get_connection() as connection:
+            cursor: MySQLCursor = connection.cursor(dictionary=True) # type: ignore
+            cursor.execute("DELETE FROM professor WHERE id = %s", [professor_id])
 

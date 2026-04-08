@@ -1,3 +1,5 @@
+from json import JSONDecodeError
+
 from Model.ParseJSON import ParseJSON
 from Model.Professor import Professor
 
@@ -37,14 +39,27 @@ class ProfessorMenu(Menu):
                     professor : Professor = ParseJSON.parse_professor(professor_input)
                     self.professor_controller.create_professor(professor)
                     print("Successfully created the Professor in the Database!")
+                except JSONDecodeError:
+                    print("Unable to Parse, Navigating back to the Professor Menu")
                 except Exception:
-                    print("Could not parse the professor from input, Navigating back to Professor Menu")
+                    print("An Error Occurred, Navigating back to Professor Menu")
                 self.controller.navigate(ProfessorMenu(self.controller))
             case '3':
                 print("Viewing a Specific Professor...")
                 self.controller.navigate(ProfessorMenu(self.controller))
             case '4':
                 print("Updating a Professor...")
+                print("Enter the Professor you want to update in the format required (JSON) (Remember to use double quotes for every field and string)")
+                print("The format is listed below:")
+                print("""{"id": 1, "first_name": "Luke", "last_name": "Po", "department": "Magic", "email": "luke486@revature.net"}""")
+                try:
+                    professor : Professor = ParseJSON.parse_professor(input())
+                    self.professor_controller.update_professor(professor)
+                    print("Update Complete!")
+                except JSONDecodeError:
+                    print("Unable to Parse, Navigating back to the Professor Menu")
+                except Exception:
+                    print("An Error Occured, Navigating back to the Professor Menu")
                 self.controller.navigate(ProfessorMenu(self.controller))
             case '5':
                 print("Deleting a Professor...")
