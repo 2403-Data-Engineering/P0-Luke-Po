@@ -37,21 +37,21 @@ class CourseMenu(Menu):
 
                 course_input = input()
                 #TODO: Still need to check whether every id is valid and everything is valid                
-                # try:
-                course : Course = ParseJSON.parse_course(course_input)
-                self.course_controller.create_course(course)
-                print("Successfully created the Course in the Database!")
-                # except json.JSONDecodeError:
-                #     print("Unable to Parse, Navigating back to the Course Menu")
-                # except Exception:
-                #     print("An Error Occurred, Navigating back to Course Menu")
+                try:
+                    course : Course = ParseJSON.parse_course(course_input)
+                    self.course_controller.create_course(course)
+                    print("Successfully created the Course in the Database!")
+                except json.JSONDecodeError:
+                    print("Unable to Parse, Navigating back to the Course Menu")
+                except Exception:
+                    print("An Error Occurred, Navigating back to Course Menu")
                 self.controller.navigate(CourseMenu(self.controller))
             case '3':
                 print("Viewing a Specific Course...")
                 print("Enter the course id of the course you want to view:")
-                course_id_input = int(input())
+                course_id_input = int(input()) #get the course_id
                 
-                course : Course = self.course_controller.get_course_by_id(course_id_input)
+                course : Course = self.course_controller.get_course_by_id(course_id_input) #get the course from its id
                 if (course is None):
                     print("An Error Occured, Navigating back to the Course Menu")
                 else:

@@ -11,8 +11,8 @@ class CourseController:
     def create_course(self, course_data: Course) -> None:
         self.course_service.create_course(course_data)
 
-    def get_course_by_id(self, course_data: int) -> Course:
-        return self.course_service.get_course_by_id(course_data)
+    def get_course_by_id(self, course_id: int) -> Course:
+        return self.course_service.get_course_by_id(course_id)
 
     def update_course(self, course_id: int, course_data: Course) -> None:
         self.course_service.update_course(course_id, course_data)

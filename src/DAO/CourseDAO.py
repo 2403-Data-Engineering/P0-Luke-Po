@@ -64,15 +64,13 @@ class CourseDAO:
             with db_connection_manager.get_connection() as connection:
                 cursor: MySQLCursor = connection.cursor(dictionary=True) # type: ignore
                 cursor.execute("DELETE FROM enrollment WHERE student_id = %(student_id)s AND course_id = %(course_id)s)", {'student_id': student_id, 'course_id': course_id})
-                # put it into the database
-            
+                # put it into the database 
     
     def get_course_by_id(self, course_id: int) -> Course:
         """Retrieve a course by its ID."""
         with db_connection_manager.get_connection() as connection:
             cursor : MySQLCursor = connection.cursor(dictionary=True) # type: ignore
-            sql = "SELECT * FROM course WHERE id = %s"
-            cursor.execute(sql, [course_id])
+            cursor.execute("SELECT * FROM course WHERE id = %s", [course_id])
         return cursor.fetchone() #type: ignore
     
     def create_course(self, course_data: Course) -> None:
@@ -116,18 +114,18 @@ class CourseDAO:
     
     
     
-    def student_enrollment_courses(self, student_id: int) -> list[Course]:
-        courses_enrolled = []
-        courses = []
-        with db_connection_manager.get_connection() as connection:
-            cursor: MySQLCursor = connection.cursor(dictionary=True) # type: ignore
-            cursor.execute("SELECT * FROM enrollment WHERE student_id = %s", [student_id]) #get all courses where found student_id
-            courses_enrolled = cursor.fetchall() # type: ignore
-            print(courses_enrolled)
-        for c in courses_enrolled:
-            #get the individual course ids from the enrollments table, and get the courses from those course_ids
-            courses.append(self.get_course_by_id(c.__getattribute__('course_id')))
-        return courses
+    # def student_enrollment_courses(self, student_id: int) -> list[Course]:
+    #     courses_enrolled = []
+    #     courses = []
+    #     with db_connection_manager.get_connection() as connection:
+    #         cursor: MySQLCursor = connection.cursor(dictionary=True) # type: ignore
+    #         cursor.execute("SELECT * FROM enrollment WHERE student_id = %s", [student_id]) #get all courses where found student_id
+    #         courses_enrolled = cursor.fetchall() # type: ignore
+    #         print(courses_enrolled)
+    #     for c in courses_enrolled:
+    #         #get the individual course ids from the enrollments table, and get the courses from those course_ids
+    #         courses.append(self.get_course_by_id(c.__getattribute__('course_id')))
+    #     return courses
 
     
 
