@@ -1,3 +1,4 @@
+from Model.Course import Course
 from Model.Student import Student
 from Database import db_connection_manager
 from mysql.connector.cursor import MySQLCursor
@@ -14,6 +15,12 @@ class StudentDAO:
                 student_list.append(row)
             connection.close()
         return student_list
+    
+    def database_contains_student(self, student_id: int) -> bool:
+        # get the list of students in the student database
+        student_id_list = map(lambda s:s.get_student_id(), self.get_all_students())
+        return student_id in student_id_list
+    
     
     def get_student_by_id(self, student_id: int) -> Student:
         """Retrieve a student by its ID."""

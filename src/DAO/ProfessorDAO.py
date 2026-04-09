@@ -15,6 +15,10 @@ class ProfessorDAO:
             connection.close()
         return professor_list
     
+    def database_contains_professor(self, professor_id: int) -> bool:
+        prof_id_list = map(lambda p:p.get_professor_id(), ProfessorDAO().get_all_professors())
+        return professor_id in prof_id_list
+    
     def get_professor_by_id(self, professor_id: int) -> Professor:
         """Retrieve a professor by its ID."""
         with db_connection_manager.get_connection() as connection:

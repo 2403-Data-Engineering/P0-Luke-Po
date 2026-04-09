@@ -48,8 +48,15 @@ class Course:
         self.students.remove(student)
         return student
         
+    def course_contains_student(self, student_id: int) -> bool:
+        student_ids = []
+        for s in student_ids:
+            if (student_id is s):
+                return True
+        return False
         
     def print_course(self) -> str:
         course_string = json.dumps(self, indent=None, default=lambda o: o.__dict__)
         return course_string
         
+    

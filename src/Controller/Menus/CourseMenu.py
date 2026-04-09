@@ -33,12 +33,10 @@ class CourseMenu(Menu):
             case '2':
                 print("Creating a Course...")
                 print("Enter a the course you want to create in the format required (JSON):")
-                print("""{"id": 0, "name": "Dummy Class", "students": [{"id": 0, "first_name": "Dummy", "last_name": "Student", "year": 0, "major": "Physics", "email": "dummys@gmail.com"}], "professor": {"id": 0, "first_name": "Dummy", "last_name": "Professor", "department": "Department", "email": "dummyprofessor@gmail.com"}}""")
+                print("""{"id": 0, "name": "Dummy Class", "students": [{"id": 0, "first_name": "Dummy", "last_name": "Student", "year": 0, "major": "Physics", "email": "dummys@gmail.com"}], "professor": {"id": 1, "first_name": "Dummy", "last_name": "Professor", "department": "Department", "email": "dummyprofessor@gmail.com"}}""")
 
                 course_input = input()
-                #TODO: Still need to check whether every id is valid and everything is valid
-                self.course_controller.create_course(ParseJSON.parse_course(course_input))
-                
+                #TODO: Still need to check whether every id is valid and everything is valid                
                 try:
                     course : Course = ParseJSON.parse_course(course_input)
                     self.course_controller.create_course(course)
