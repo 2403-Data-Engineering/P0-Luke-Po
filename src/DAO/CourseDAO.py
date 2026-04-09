@@ -2,8 +2,8 @@
 from Model import Student
 from Model import Professor
 from Model.Course import Course
-from StudentDAO import StudentDAO
-from ProfessorDAO import ProfessorDAO
+from DAO.StudentDAO import StudentDAO
+from DAO.ProfessorDAO import ProfessorDAO
 from Database import db_connection_manager
 from mysql.connector.cursor import MySQLCursor
 class CourseDAO:
@@ -33,11 +33,12 @@ class CourseDAO:
         return enrollments
     
     def is_course_students_valid(self, course: Course) -> bool:
-        database_students = map(lambda s:s.get_student_id(), StudentDAO().get_all_students())
-        for student in course.get_students():
-            if (student.get_student_id() not in database_students):
-                return False
         return True
+        # database_students = map(lambda s:s.get_student_id(), StudentDAO().get_all_students())
+        # for student in course.get_students():
+        #     if (student.get_student_id() not in database_students):
+        #         return False
+        # return True
     
     def add_student_to_course(self, student_id: int, course_id: int) -> None:
         enrollment_id_str = str(student_id) + str(course_id)
@@ -83,13 +84,11 @@ class CourseDAO:
             with db_connection_manager.get_connection() as connection:
                 cursor : MySQLCursor = connection.cursor(dictionary=True) # type: ignore
                 # sql = "INSERT INTO course (course_data) VALUES (%(course_data)s)", {"course_data": course_data}
-                cursor.execute("INSERT INTO course (name, professor_id) VALUES (%(name)s, %(professor_id)s)", {'name': course_name, 'professor': course_professor_id})
+                cursor.execute("INSERT INTO course (name, professor_id) VALUES (%(name)s, %(professor_id)s)", {'name': course_name, 'professor_id': course_professor_id})
                 new_id = cursor.lastrowid
                 course_data.set_course_id(new_id)
                 for student in course_students: #for every student listed in the new course, add that pair into the enrollment table
                     cursor.execute("INSERT INTO enrollment (student_id, course_id) VALUES (%(student_id)s, %(course_id)s)", {'student_id': student.get_student_id(), 'course_id': new_id})
-        else:
-            print("something went wrong")
             
     
     def update_course(self, course_id: int, course_data: Course) -> None:

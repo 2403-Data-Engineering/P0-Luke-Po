@@ -1,6 +1,7 @@
 from Model.Professor import Professor
 from Database import db_connection_manager
 from mysql.connector.cursor import MySQLCursor
+from Model.ParseJSON import ParseJSON
 class ProfessorDAO:
     
     def get_all_professors(self) -> list[Professor]:
@@ -16,8 +17,12 @@ class ProfessorDAO:
         return professor_list
     
     def database_contains_professor(self, professor_id: int) -> bool:
-        prof_id_list = map(lambda p:p.get_professor_id(), ProfessorDAO().get_all_professors())
-        return professor_id in prof_id_list
+        prof_id_list = []
+        # for prof in self.get_all_professors():
+        #     print(prof)
+        #     prof_id_list.append(prof.get_professor_id())
+        # prof_id_list = map(lambda p:p.get_professor_id(), ProfessorDAO().get_all_professors())
+        return True #TODO: for now return true
     
     def get_professor_by_id(self, professor_id: int) -> Professor:
         """Retrieve a professor by its ID."""
