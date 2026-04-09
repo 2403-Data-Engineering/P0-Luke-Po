@@ -26,7 +26,7 @@ class MainMenu(Menu):
                 from .CourseMenu import CourseMenu
                 self.controller.navigate(CourseMenu(self.controller))
             case '4':
-                from .ReportsMenu import ReportsMenu(self.controller)
+                from .ReportsMenu import ReportsMenu
                 self.controller.navigate(ReportsMenu(self.controller))
             case '5':
                 self.controller.quit()
