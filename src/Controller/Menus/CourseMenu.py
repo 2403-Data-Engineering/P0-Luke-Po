@@ -65,9 +65,6 @@ class CourseMenu(Menu):
                 print("Updating a Course...")
                 print("Enter the course you want to update in the format required (JSON):")
                 print("""{"id": 0, "name": "Dummy Class", "students": [{"id": 0, "first_name": "Dummy", "last_name": "Student", "year": 0, "major": "Physics", "email": "dummys@gmail.com"}], "professor": {"id": 0, "first_name": "Dummy", "last_name": "Professor", "department": "Department", "email": "dummyprofessor@gmail.com"}}""")
-                course : Course = ParseJSON.parse_course(input())
-                self.course_controller.update_course(course_data=course)
-                print("Update Complete!")
 
             #only need id for deletion
             case '5':
@@ -78,47 +75,47 @@ class CourseMenu(Menu):
                 self.course_controller.get_course_service().delete_course(int(course_input))
                 self.controller.navigate(CourseMenu(self.controller))
             case '6':
-                # try:
-                print("Enter the id of the student you want to enroll")
-                student_id_input = int(input())
-                print("enter the id of the course you want the student to be enrolled in")
-                course_id_input = int(input())
-                self.course_controller.add_student_to_course(student_id_input, course_id_input)
-                print("Student enrolled!")
-                # except Exception:
-                #     print("error enrolling student")
+                try:
+                    print("Enter the id of the student you want to enroll")
+                    student_id_input = int(input())
+                    print("enter the id of the course you want the student to be enrolled in")
+                    course_id_input = int(input())
+                    self.course_controller.add_student_to_course(student_id_input, course_id_input)
+                    print("Student enrolled!")
+                except Exception:
+                    print("error enrolling student")
                 self.controller.navigate(CourseMenu(self.controller))
             case '7':
-                # try:
-                print("Enter the id of the student you want to unenroll")
+                try:
+                    print("Enter the id of the student you want to unenroll")
                     student_id_input = int(input())
-                print("enter the id of the course you want the student to be unenrolled in")
-                course_id_input = int(input())
-                self.course_controller.remove_student_from_course(student_id_input, course_id_input)
-                print("Student unenrolled!")
-                # except Exception:
-                #     print("error unenrolling student")
-                # self.controller.navigate(CourseMenu(self.controller))
+                    print("enter the id of the course you want the student to be unenrolled in")
+                    course_id_input = int(input())
+                    self.course_controller.remove_student_from_course(student_id_input, course_id_input)
+                    print("Student unenrolled!")
+                except Exception:
+                    print("error unenrolling student")
+                self.controller.navigate(CourseMenu(self.controller))
             case '8':
                 print("View all the students in a course")
-                # try:
-                print("Enter the id of the course you want to view")
-                course_id_input = int(input())
-                self.course_controller.course_student_list(course_id_input)
-                print("Successfully found course's enrollments")
-                # except Exception:
-                #     print("error finding course's enrollments")
+                try:
+                    print("Enter the id of the course you want to view")
+                    course_id_input = int(input())
+                    self.course_controller.course_student_list(course_id_input)
+                    print("Successfully found course's enrollments")
+                except Exception:
+                    print("error finding course's enrollments")
                 self.controller.navigate(CourseMenu(self.controller))
             case '9':
                 print("Viewing all classes a student has enrolled in")
-                # try:
-                print("Enter the id of the student you want to view")
-                student_id_input = int(input())
-                self.course_controller.student_enrollment_courses(student_id_input)
-                print("Successfully found student enrollment courses")
-                # except Exception:
-                    # print("error finding student enrollment courses")
-                self.controller.navigate(CourseMenu(self.controller))
+                try:
+                    print("Enter the id of the student you want to view")
+                    student_id_input = int(input())
+                    self.course_controller.student_enrollment_courses(student_id_input)
+                    print("Successfully found student enrollment courses")
+                except Exception:
+                    print("error finding student enrollment courses")
+                    self.controller.navigate(CourseMenu(self.controller))
             case '12':
                 self.controller.navigate(MainMenu(self.controller))
             case 'q':

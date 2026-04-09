@@ -26,9 +26,9 @@ class CourseService:
         """Create a new course."""
         self.course_dao.create_course(course_data)
     
-    def update_course(self, course_data: Course) -> None:
+    def update_course(self, course_id: int, course_data: Course) -> None:
         """Update an existing course by its ID"""
-        return self.course_dao.update_course(course_data)
+        return self.course_dao.update_course(course_id, course_data)
     
     def delete_course(self, course_id: int) -> None:
         """Delete a course by ID."""
