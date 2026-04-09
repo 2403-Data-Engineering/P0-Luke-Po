@@ -10,7 +10,8 @@ class MainMenu(Menu):
         print("1. Professor Management")
         print("2. Student Management")
         print("3. Course Management")
-        print("4. Exit")
+        print("4. Reports")
+        print("5. Exit")
         
         user_input: str = input().lower()
         
@@ -25,6 +26,9 @@ class MainMenu(Menu):
                 from .CourseMenu import CourseMenu
                 self.controller.navigate(CourseMenu(self.controller))
             case '4':
+                from .ReportsMenu import ReportsMenu(self.controller)
+                self.controller.navigate(ReportsMenu(self.controller))
+            case '5':
                 self.controller.quit()
             case _:
                 print("Invalid choice, please try again.")

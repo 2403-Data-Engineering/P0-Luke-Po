@@ -82,5 +82,7 @@ class ProfessorMenu(Menu):
             case '6':
                 from Controller.Menus.MainMenu import MainMenu
                 self.controller.navigate(MainMenu(self.controller))
+            case 'q':
+                self.controller.quit()
             case _:
                 print("Invalid choice, please try again.")

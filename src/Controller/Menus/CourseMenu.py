@@ -18,7 +18,11 @@ class CourseMenu(Menu):
         print("3. View a course")
         print("4. Update a course")
         print("5. Delete a course")
-        print("6. Go Back to the Main Menu")
+        print("6. Enroll a Student from a Course")
+        print("7. Unenroll a Student from a Course")
+        print("8. See all Students Enrolled in a Class")
+        print("9. View all Courses a student is enrolled in")
+        print("10. Go Back to the Main Menu")
         
         user_input = input().lower()
         
@@ -93,28 +97,50 @@ class CourseMenu(Menu):
                     print("error unenrolling student")
                 self.controller.navigate(CourseMenu(self.controller))
             case '8':
+                print("View all the students in a course")
+                try:
+                    print("Enter the id of the course you want to view")
+                    course_id_input = int(input())
+                    self.course_controller.course_student_list(course_id_input)
+                    print("Successfully found course's enrollments")
+                except Exception:
+                    print("error finding course's enrollments")
+                self.controller.navigate(CourseMenu(self.controller))
+            case '9':
+                print("Viewing all classes a student has enrolled in")
+                try:
+                    print("Enter the id of the student you want to view")
+                    student_id_input = int(input())
+                    self.course_controller.student_enrollment_courses(student_id_input)
+                    print("Successfully found student enrollment courses")
+                except Exception:
+                    print("error finding student enrollment courses")
+                    self.controller.navigate(CourseMenu(self.controller))
+            case '12':
                 self.controller.navigate(MainMenu(self.controller))
+            case 'q':
+                self.controller.quit()
             case _:
                 print("Invalid choice, please try again.")
                 self.controller.navigate(CourseMenu(self.controller))
                 
-    def render_course(self) -> None:
-        print("Welcome to the Specific Course Menu. Please select an option:")
-        print("1. Add a student to this course")
-        print("2. Remove a Student from this course")
-        print("3. Go Back to the Main Menu")
-        user_input = input().lower
-        match user_input:
-            case '1':
-                #TODO
-                pass
-            case '2':
-                #TODO
-                pass
-            case '3':
-                from Controller.Menus.MainMenu import MainMenu
-                self.controller.navigate(MainMenu(self.controller))
-            case _:
-                print("Invalid choice, please try again")
-                self.controller.navigate(CourseMenu(self.controller))
+    # def render_course(self) -> None:
+    #     print("Welcome to the Specific Course Menu. Please select an option:")
+    #     print("1. Add a student to this course")
+    #     print("2. Remove a Student from this course")
+    #     print("3. Go Back to the Main Menu")
+    #     user_input = input().lower
+    #     match user_input:
+    #         case '1':
+    #             #TODO
+    #             pass
+    #         case '2':
+    #             #TODO
+    #             pass
+    #         case '3':
+    #             from Controller.Menus.MainMenu import MainMenu
+    #             self.controller.navigate(MainMenu(self.controller))
+    #         case _:
+    #             print("Invalid choice, please try again")
+    #             self.controller.navigate(CourseMenu(self.controller))
         

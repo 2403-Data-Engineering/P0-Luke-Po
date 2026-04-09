@@ -38,4 +38,8 @@ class CourseService:
         """Retrieve all courses."""
         return self.course_dao.get_all_courses()
     
+    def student_enrollment_courses(self, student_id : int) -> list[Course]:
+        return self.course_dao.student_enrollment_courses(student_id=student_id)
     
+    def course_student_list(self, course_id: int) -> list[Student]:
+        return self.course_dao.course_student_list(course_id)

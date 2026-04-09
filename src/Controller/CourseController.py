@@ -29,3 +29,8 @@ class CourseController:
     def get_all_courses(self) -> list[Course]:
         return self.course_service.get_all_courses()
     
+    def student_enrollment_courses(self, student_id : int) -> list[Course]:
+        return self.course_service.student_enrollment_courses(student_id=student_id)
+    
+    def course_student_list(self, course_id: int) -> list[Student]:
+        return self.course_service.course_student_list(course_id)

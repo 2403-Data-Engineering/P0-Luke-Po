@@ -127,20 +127,31 @@ class CourseDAO:
     
     
     
-    # def student_enrollment_courses(self, student_id: int) -> list[Course]:
-    #     courses_enrolled = []
-    #     courses = []
-    #     with db_connection_manager.get_connection() as connection:
-    #         cursor: MySQLCursor = connection.cursor(dictionary=True) # type: ignore
-    #         cursor.execute("SELECT * FROM enrollment WHERE student_id = %s", [student_id]) #get all courses where found student_id
-    #         courses_enrolled = cursor.fetchall() # type: ignore
-    #         print(courses_enrolled)
-    #     for c in courses_enrolled:
-    #         #get the individual course ids from the enrollments table, and get the courses from those course_ids
-    #         courses.append(self.get_course_by_id(c.__getattribute__('course_id')))
-    #     return courses
+    def student_enrollment_courses(self, student_id: int) -> list[Course]:
+        courses_enrolled = []
+        courses = []
+        with db_connection_manager.get_connection() as connection:
+            cursor: MySQLCursor = connection.cursor(dictionary=True) # type: ignore
+            cursor.execute("SELECT * FROM enrollment WHERE student_id = %s", [student_id]) #get all courses where found student_id
+            courses_enrolled = cursor.fetchall() # type: ignore
+            print(courses_enrolled)
+        for c in courses_enrolled:
+            #get the individual course ids from the enrollments table, and get the courses from those course_ids
+            courses.append(self.get_course_by_id(int(c['course_id'])))
+            #courses.append(self.get_course_by_id(c.__getattribute__('course_id')))
+        return courses
 
-    
+    def course_student_list(self, course_id: int) -> list[Student]:
+        enrollments = []
+        students = []
+        with db_connection_manager.get_connection() as connection:
+            cursor: MySQLCursor = connection.cursor(dictionary=True) # type: ignore
+            cursor.execute("SELECT * FROM enrollment WHERE course_id = %s", [course_id]) #get all students where found course_id
+            enrollments = cursor.fetchall() # type: ignore
+        for e in enrollments:
+            #get the individual student ids from the enrollments table, and get the students from those student_ids
+            students.append(StudentDAO().get_student_by_id(int(e['student_id'])))
+        return students
 
         
     
