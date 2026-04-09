@@ -76,10 +76,14 @@ class CourseDAO:
     
     def get_course_by_id(self, course_id: int) -> Course:
         """Retrieve a course by its ID."""
+        students = []
         with db_connection_manager.get_connection() as connection:
             cursor : MySQLCursor = connection.cursor(dictionary=True) # type: ignore
             cursor.execute("SELECT * FROM course WHERE id = %s", [course_id])
-        return cursor.fetchone() #type: ignore
+            course : RowType = cursor.fetchone() #type: ignore
+            # cursor.execute("SELECT * FROM enrollment WHERE course_id = %s", [course_id])
+            # cursor.fetchone()            
+        return Course(course_id, course.get('name'), self.course_student_list(course_id), course.get('professor_id')) #type: ignore
     
     def create_course(self, course_data: Course) -> None:
         course_name = course_data.get_name()

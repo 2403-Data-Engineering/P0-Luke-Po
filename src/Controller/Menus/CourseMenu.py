@@ -152,7 +152,7 @@ class CourseMenu(Menu):
                 
                 print('\n')
                 for course in courses:
-                    print(course)
+                    print(course.print_course())
                 print('\n')
                 # try:
                 #     print("Enter the id of the student you want to view")
@@ -162,7 +162,7 @@ class CourseMenu(Menu):
                 # except Exception:
                 #     print("error finding student enrollment courses")
                 self.controller.navigate(CourseMenu(self.controller))
-            case '12':
+            case '10':
                 self.controller.navigate(MainMenu(self.controller))
             case 'q':
                 self.controller.quit()
