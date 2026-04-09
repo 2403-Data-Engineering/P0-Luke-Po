@@ -96,33 +96,30 @@ class CourseDAO:
             
     
     def update_course(self, course_data: Course) -> None:
+        """Update an existing course by its ID"""
         course_name = course_data.get_name()
         course_students = course_data.get_students()
         course_professor_id = course_data.get_professor().get_professor_id()
-        """Update an existing course by its ID"""
         with db_connection_manager.get_connection() as connection:
             cursor : MySQLCursor = connection.cursor(dictionary=True) # type: ignore
-            cursor.execute("UPDATE course SET name = %(course_name)s, professor_id = %(course_professor)s WHERE id = %(id)s", {'course_name' : course_name, 'professor_id' : course_professor_id, 'id' : course_data.get_course_id() })
+            cursor.execute("UPDATE course SET name = %(course_name)s, professor_id = %(professor_id)s WHERE id = %(id)s", {'course_name': course_name, 'professor_id': course_professor_id, 'id': course_data.get_course_id() })
 
-            # now add students to course but only if they are in the student database
-            for student in course_students: # if student-course relationship is already in the enrollment table, then I think the INSERT INTO will just replace that
-                if(StudentDAO().database_contains_student(student.get_student_id()) and ProfessorDAO().database_contains_professor(course_professor_id)):
-                    cursor.execute("INSERT INTO enrollment (student_id, course_id) VALUES (%(student_id)s, %(course_id)s)", {'student_id': student.get_student_id(), 'course_id': course_data.get_course_id()})
-                else: #don't do anything if either doesn't exist in database
-                    pass
+            # # now add students to course but only if they are in the student database
+            # for student in course_students: # if student-course relationship is already in the enrollment table, then I think the INSERT INTO will just replace that
+            #     if(StudentDAO().database_contains_student(student.get_student_id()) and ProfessorDAO().database_contains_professor(course_professor_id)):
+            #         cursor.execute("INSERT INTO enrollment (student_id, course_id) VALUES (%(student_id)s, %(course_id)s)", {'student_id': student.get_student_id(), 'course_id': course_data.get_course_id()})
+            #     else: #don't do anything if either doesn't exist in database
+            #         pass
                     
     
     def delete_course(self, course_id: int) -> None:
         """Delete a course by its ID."""
         with db_connection_manager.get_connection() as connection:
             cursor: MySQLCursor = connection.cursor(dictionary=True) # type: ignore
-            cursor.execute("DELETE FROM course WHERE id = %s", [course_id])
             #delete the enrollments for that course too
-            for enrollment in self.get_enrollment_database():
-                # once get the enrollments from the database, needs to delete
-                enroll_info = self.get_enrollment_from_database(enrollment)
-                if(enroll_info['course_id'] is course_id):
-                    self.remove_student_from_course(enroll_info['student_id'], enroll_info['course_id'])
+            cursor.execute("DELETE FROM enrollment WHERE enrollment.course_id = %s", [course_id])
+            cursor.execute("DELETE FROM course WHERE id = %s", [course_id])
+            
             
     
     
