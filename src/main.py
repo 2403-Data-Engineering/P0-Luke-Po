@@ -38,17 +38,3 @@ class main:
             controller.menu.render()
         
         print("Quitting Application")
-        
-        
-        # student = Student()
-        # course = Course()
-        # prof = Professor()
-        # print(student.print_student())
-        # print(course.print_course())
-        # print(prof.print_professor())
-        
-        # print(ParseJSON.parse_student(student.print_student()))
-        # print(ParseJSON.parse_professor(prof.print_professor()))
-        # print(ParseJSON.parse_course(course.print_course()))
-        # course.add_student_to_course(Student(1, "student2", "test", 1, "CS", "asdfsad"))
-        # print(ParseJSON.parse_course(course.print_course()))
