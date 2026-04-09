@@ -32,6 +32,12 @@ class CourseDAO:
             connection.close()
         return enrollments
     
+    def get_enrollment_from_database(self, enrollment_id : int):
+        with db_connection_manager.get_connection() as connection:
+            cursor: MySQLCursor = connection.cursor(dictionary=True) #type: ignore
+            cursor.execute("SELECT * FROM enrollment WHERE id = %(id)s", {'id': enrollment_id})
+        return cursor.fetchone() #returns a dict
+    
     def is_course_students_valid(self, course: Course) -> bool:
         return True
         # database_students = map(lambda s:s.get_student_id(), StudentDAO().get_all_students())
@@ -96,7 +102,7 @@ class CourseDAO:
         """Update an existing course by its ID"""
         with db_connection_manager.get_connection() as connection:
             cursor : MySQLCursor = connection.cursor(dictionary=True) # type: ignore
-            cursor.execute("UPDATE course SET name = %(course_name)s, professor = %(course_professor)s WHERE id = %(id)s", {'course_name' : course_name, 'course_professor_id' : course_professor_id, 'id' : course_id })
+            cursor.execute("UPDATE course SET name = %(course_name)s, professor_id = %(course_professor)s WHERE id = %(id)s", {'course_name' : course_name, 'professor_id' : course_professor_id, 'id' : course_id })
 
             # now add students to course but only if they are in the student database
             for student in course_students: # if student-course relationship is already in the enrollment table, then I think the INSERT INTO will just replace that
@@ -111,6 +117,13 @@ class CourseDAO:
         with db_connection_manager.get_connection() as connection:
             cursor: MySQLCursor = connection.cursor(dictionary=True) # type: ignore
             cursor.execute("DELETE FROM course WHERE id = %s", [course_id])
+            #delete the enrollments for that course too
+            for enrollment in self.get_enrollment_database():
+                # once get the enrollments from the database, needs to delete
+                enroll_info = self.get_enrollment_from_database(enrollment)
+                if(enroll_info['course_id'] is course_id):
+                    self.remove_student_from_course(enroll_info['student_id'], enroll_info['course_id'])
+            
     
     
     

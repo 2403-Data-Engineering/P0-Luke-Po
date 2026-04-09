@@ -11,6 +11,12 @@ class CourseService:
             course_dao: Data access object for Course entities
         """
         self.course_dao = course_dao
+        
+    def add_student_to_course(self, student_id: int, course_id: int) -> None:
+        return self.course_dao.add_student_to_course(student_id, course_id)
+    
+    def remove_student_from_course(self, student_id: int, course_id: int) -> None:
+        return self.course_dao.remove_student_from_course(student_id, course_id)
     
     def get_course_by_id(self, course_id: int) -> Course:
         """Retrieve a course by ID."""

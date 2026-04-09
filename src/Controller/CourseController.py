@@ -7,6 +7,12 @@ class CourseController:
         
     def get_course_service(self) -> CourseService:
         return self.course_service
+    
+    def add_student_to_course(self, student_id: int, course_id: int) -> None:
+        return self.course_service.add_student_to_course(student_id, course_id)
+    
+    def remove_student_from_course(self, student_id: int, course_id: int) -> None:
+        return self.course_service.remove_student_from_course(student_id, course_id)
 
     def create_course(self, course_data: Course) -> None:
         self.course_service.create_course(course_data)

@@ -71,6 +71,28 @@ class CourseMenu(Menu):
                 self.course_controller.get_course_service().delete_course(int(course_input))
                 self.controller.navigate(CourseMenu(self.controller))
             case '6':
+                try:
+                    print("Enter the id of the student you want to enroll")
+                    student_id_input = int(input())
+                    print("enter the id of the course you want the student to be enrolled in")
+                    course_id_input = int(input())
+                    self.course_controller.add_student_to_course(student_id_input, course_id_input)
+                    print("Student enrolled!")
+                except Exception:
+                    print("error enrolling student")
+                self.controller.navigate(CourseMenu(self.controller))
+            case '7':
+                try:
+                    print("Enter the id of the student you want to unenroll")
+                    student_id_input = int(input())
+                    print("enter the id of the course you want the student to be unenrolled in")
+                    course_id_input = int(input())
+                    self.course_controller.remove_student_from_course(student_id_input, course_id_input)
+                    print("Student unenrolled!")
+                except Exception:
+                    print("error unenrolling student")
+                self.controller.navigate(CourseMenu(self.controller))
+            case '8':
                 self.controller.navigate(MainMenu(self.controller))
             case _:
                 print("Invalid choice, please try again.")
