@@ -1,6 +1,6 @@
 
-from Model import Student
-from Model import Professor
+from Model.Student import Student
+from Model.Professor import Professor
 from Model.Course import Course
 from DAO.StudentDAO import StudentDAO
 from DAO.ProfessorDAO import ProfessorDAO
@@ -124,33 +124,56 @@ class CourseDAO:
             
             
     
-    
-    
+
     def student_enrollment_courses(self, student_id: int) -> list[Course]:
-        courses_enrolled = []
-        courses = []
+        """Finds the list of courses a student has enrolled in
+
+        Args:
+            student_id (int): the student's id number
+
+        Returns:
+            list[Course]: the list of courses the student is enrolled in
+        """
+        course_ids = []
         with db_connection_manager.get_connection() as connection:
             cursor: MySQLCursor = connection.cursor(dictionary=True) # type: ignore
             cursor.execute("SELECT * FROM enrollment WHERE student_id = %s", [student_id]) #get all courses where found student_id
-            courses_enrolled = cursor.fetchall() # type: ignore
-            print(courses_enrolled)
-        for c in courses_enrolled:
-            #get the individual course ids from the enrollments table, and get the courses from those course_ids
-            courses.append(self.get_course_by_id(int(c['course_id'])))
-            #courses.append(self.get_course_by_id(c.__getattribute__('course_id')))
-        return courses
+            
+            for row in cursor:
+                course_ids.append(row.get('course_id'))
+        return self.get_courses_from_ids(course_ids)
+
+
 
     def course_student_list(self, course_id: int) -> list[Student]:
-        enrollments = []
-        students = []
+        student_ids = []
         with db_connection_manager.get_connection() as connection:
             cursor: MySQLCursor = connection.cursor(dictionary=True) # type: ignore
-            cursor.execute("SELECT * FROM enrollment WHERE course_id = %s", [course_id]) #get all students where found course_id
-            enrollments = cursor.fetchall() # type: ignore
-        for e in enrollments:
-            #get the individual student ids from the enrollments table, and get the students from those student_ids
-            students.append(StudentDAO().get_student_by_id(int(e['student_id'])))
-        return students
+            cursor.execute("SELECT * FROM enrollment WHERE course_id = %s", [course_id]) # get all students where found course_id
+            for row in cursor:
+                student_ids.append(row.get('student_id'))
+        return self.get_students_from_ids(student_ids)
 
         
     
+
+    def get_students_from_ids(self, student_ids : list[int]) -> list[Student]:
+        students = []
+        for student_id in student_ids:
+            students.append(StudentDAO().get_student_by_id(student_id))
+        return students
+            
+    def get_courses_from_ids(self, course_ids : list[int]) -> list[Course]:
+        courses = []
+        for course_id in course_ids:
+            courses.append(self.get_course_by_id(course_id))
+        return courses 
+    
+        # students = []
+        # all_students : list[Student] = StudentDAO().get_all_students()
+            
+        # for student_id in student_ids:
+        #     for student in all_students:
+        #         if (student_id is student.get('student_id')): #if they do match, then add them to the list
+        #             students.append(student)
+        # return students

@@ -133,26 +133,27 @@ class CourseMenu(Menu):
                 
                 print("Enter the id of the course you want to view")
                 course_id_input = int(input())
-                self.course_controller.course_student_list(course_id_input)
+                students = self.course_controller.course_student_list(course_id_input)
                 print("Successfully found course's enrollments")
-                
-                # try:
-                #     print("Enter the id of the course you want to view")
-                #     course_id_input = int(input())
-                #     self.course_controller.course_student_list(course_id_input)
-                #     print("Successfully found course's enrollments")
-                # except Exception:
-                #     print("error finding course's enrollments")
+                for student in students:
+                    print('\n')
+                    print(student)
+
                 self.controller.navigate(CourseMenu(self.controller))
             case '9':
                 print("Viewing all classes a student has enrolled in")
                 print("Enter the id of the student you want to view")
                 
                 student_id_input = int(input())
-                self.course_controller.student_enrollment_courses(student_id_input)
+                courses = self.course_controller.student_enrollment_courses(student_id_input)
+                
                 print("Successfully found student enrollment courses")
+                # print(courses)
                 
-                
+                print('\n')
+                for course in courses:
+                    print(course)
+                print('\n')
                 # try:
                 #     print("Enter the id of the student you want to view")
                 #     student_id_input = int(input())
