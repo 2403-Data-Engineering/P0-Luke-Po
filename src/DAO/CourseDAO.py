@@ -49,28 +49,30 @@ class CourseDAO:
     def add_student_to_course(self, student_id: int, course_id: int) -> None:
         enrollment_id_str = str(student_id) + str(course_id)
         enrollment_id = int(enrollment_id_str) #enrollment id is made of student_id then course_id
-        if (StudentDAO().database_contains_student(student_id)): #if student database already does not have student
-            return
-        elif (enrollment_id in self.get_enrollment_database()): #if enrollment database doesn't already have the student
-            return
-        else:
-            with db_connection_manager.get_connection() as connection:
-                cursor: MySQLCursor = connection.cursor(dictionary=True) # type: ignore
-                cursor.execute("INSERT INTO enrollment (student_id, course_id) VALUES (%(student_id)s, %(course_id)s)", {'student_id': student_id, 'course_id': course_id})
-                # put it into the database
+        # if (StudentDAO().database_contains_student(student_id)): #if student database already does not have student
+        #     return
+        # elif (enrollment_id in self.get_enrollment_database()): #if enrollment database doesn't already have the student
+        #     return
+        # else:
+        with db_connection_manager.get_connection() as connection:
+            cursor: MySQLCursor = connection.cursor(dictionary=True) # type: ignore
+            cursor.execute("INSERT INTO enrollment (student_id, course_id) VALUES (%(student_id)s, %(course_id)s)", {'student_id': student_id, 'course_id': course_id})
+        print("Student " + str(student_id) +" registered for course!")
+            # put it into the database
                 
     def remove_student_from_course(self, student_id: int, course_id: int) -> None:
-        enrollment_id_str = str(student_id) + str(course_id)
-        enrollment_id = int(enrollment_id_str) #enrollment id is made of student_id then course_id
-        if (StudentDAO().database_contains_student(student_id)): #if student database already does not have student
-            return
-        elif (enrollment_id in self.get_enrollment_database()): #if enrollment database doesn't already have the student
-            return
-        else:
-            with db_connection_manager.get_connection() as connection:
-                cursor: MySQLCursor = connection.cursor(dictionary=True) # type: ignore
-                cursor.execute("DELETE FROM enrollment WHERE student_id = %(student_id)s AND course_id = %(course_id)s)", {'student_id': student_id, 'course_id': course_id})
-                # put it into the database 
+        # enrollment_id_str = str(student_id) + str(course_id)
+        # enrollment_id = int(enrollment_id_str) #enrollment id is made of student_id then course_id
+        # if (StudentDAO().database_contains_student(student_id)): #if student database already does not have student
+        #     return
+        # elif (enrollment_id in self.get_enrollment_database()): #if enrollment database doesn't already have the student
+        #     return
+        # else:
+        with db_connection_manager.get_connection() as connection:
+            cursor: MySQLCursor = connection.cursor(dictionary=True) # type: ignore
+            cursor.execute("DELETE FROM enrollment WHERE (student_id = %(student_id)s AND course_id = %(course_id)s)", {'student_id': student_id, 'course_id': course_id})
+            # put it into the database 
+        print("Student " + str(student_id) +" removed from course!")
     
     def get_course_by_id(self, course_id: int) -> Course:
         """Retrieve a course by its ID."""
