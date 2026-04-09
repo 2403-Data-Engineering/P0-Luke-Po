@@ -105,7 +105,7 @@ class CourseDAO:
             for student in course_students: # if student-course relationship is already in the enrollment table, then I think the INSERT INTO will just replace that
                 if(StudentDAO().database_contains_student(student.get_student_id()) and ProfessorDAO().database_contains_professor(course_professor_id)):
                     cursor.execute("INSERT INTO enrollment (student_id, course_id) VALUES (%(student_id)s, %(course_id)s)", {'student_id': student.get_student_id(), 'course_id': course_id})
-                else: #don't do anyting if either doesn't exist in database
+                else: #don't do anything if either doesn't exist in database
                     pass
                     
     
