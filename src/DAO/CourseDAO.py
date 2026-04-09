@@ -95,19 +95,19 @@ class CourseDAO:
                     cursor.execute("INSERT INTO enrollment (student_id, course_id) VALUES (%(student_id)s, %(course_id)s)", {'student_id': student.get_student_id(), 'course_id': new_id})
             
     
-    def update_course(self, course_id: int, course_data: Course) -> None:
+    def update_course(self, course_data: Course) -> None:
         course_name = course_data.get_name()
         course_students = course_data.get_students()
         course_professor_id = course_data.get_professor().get_professor_id()
         """Update an existing course by its ID"""
         with db_connection_manager.get_connection() as connection:
             cursor : MySQLCursor = connection.cursor(dictionary=True) # type: ignore
-            cursor.execute("UPDATE course SET name = %(course_name)s, professor_id = %(course_professor)s WHERE id = %(id)s", {'course_name' : course_name, 'professor_id' : course_professor_id, 'id' : course_id })
+            cursor.execute("UPDATE course SET name = %(course_name)s, professor_id = %(course_professor)s WHERE id = %(id)s", {'course_name' : course_name, 'professor_id' : course_professor_id, 'id' : course_data.get_course_id() })
 
             # now add students to course but only if they are in the student database
             for student in course_students: # if student-course relationship is already in the enrollment table, then I think the INSERT INTO will just replace that
                 if(StudentDAO().database_contains_student(student.get_student_id()) and ProfessorDAO().database_contains_professor(course_professor_id)):
-                    cursor.execute("INSERT INTO enrollment (student_id, course_id) VALUES (%(student_id)s, %(course_id)s)", {'student_id': student.get_student_id(), 'course_id': course_id})
+                    cursor.execute("INSERT INTO enrollment (student_id, course_id) VALUES (%(student_id)s, %(course_id)s)", {'student_id': student.get_student_id(), 'course_id': course_data.get_course_id()})
                 else: #don't do anything if either doesn't exist in database
                     pass
                     
