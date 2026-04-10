@@ -60,3 +60,8 @@ class Course:
         return course_string
         
     
+    # def dict_to_course(course_dict: dict) -> Course:
+    #     students_dict = course_dict.get('students')
+        
+        
+    #     return Course(course_dict.get('course_id'), course_dict.get('name'), course_dict.get('students'), course_dict.get('professor'))

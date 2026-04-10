@@ -51,3 +51,39 @@ class PrintReport:
         
                 
         markdown_file.create_md_file() #print the file
+        
+    @staticmethod
+    def print_professor_markdown_file(professor: Professor, all_courses: list[Course], course_controller: CourseController) -> None:
+        professor_id = professor.get_professor_id()
+        courses_taught = []
+        for course in all_courses:
+            if (course.get('professor_id') is professor_id):
+                courses_taught.append(course)
+        #now we have all the courses the professor teaches
+        
+        markdown_file = MdUtils(file_name="professor_markdown_file", title="Professor Enrollment Report")
+        # Professor summary first:
+        name = professor.get_first_name() + " " + professor.get_last_name() #name of the student up top
+        professor_id_str : str = "Professor ID: " + str(professor_id)
+        prof_department: str = "Department: " + str(professor.get_department())
+        prof_email : str = "Email: " + professor.get_email()
+        markdown_file.new_header(level=1, title=name)
+        markdown_file.new_header(level=2, title=professor_id_str)
+        markdown_file.new_header(level=2, title=prof_department)
+        markdown_file.new_header(level=2, title=prof_email)
+        markdown_file.new_header(level=2, title='Courses Taught: ')
+        
+        #go through all courses taught, and get the student_list for them and print it
+        for c in courses_taught:
+            markdown_file.new_header(level=3, title=(c.get('name') + ': '))
+            student_strs = []
+            #get the student list for the course
+            for s in course_controller.course_student_list(c.get('id')):
+                s_name = s.get('first_name') + s.get('last_name')
+                s_id_str = str(s.get('id'))
+                
+                student_strs.append((s_name + '; ' + s_id_str)) #get all the students and their ids
+                
+            markdown_file.new_list(student_strs)
+            
+        markdown_file.create_md_file()
