@@ -34,9 +34,16 @@ class StudentMenu(Menu):
                 print("Note that the id inputted does not matter when creating a student")
                 print("EXAMPLE:")
                 print("""{"id": 0, "first_name": "Dummy", "last_name": "Student", "year": 0, "major": "Physics", "email": "dummys@gmail.com"}""")
-                student_input = input()
-                self.student_controller.create_student(ParseJSON.parse_student(student_input))
-                self.controller.navigate(StudentMenu(self.controller))
+                try:
+                    student_input = input()
+                    self.student_controller.create_student(ParseJSON.parse_student(student_input))
+                    self.controller.navigate(StudentMenu(self.controller))
+                except JSONDecodeError:
+                    print("Error parsing input")
+                except Exception:
+                    print("Error creating student")
+                    
+
             case '3':
                 print("Viewing a Specific Student...")
                 print("Enter the student id of the student you want to view:")
