@@ -118,15 +118,6 @@ class CourseMenu(Menu):
                 self.course_controller.remove_student_from_course(student_id_input, course_id_input)
                 print("Student unenrolled!")
                 
-                # try:
-                #     print("Enter the id of the student you want to unenroll")
-                #     student_id_input = int(input())
-                #     print("enter the id of the course you want the student to be unenrolled in")
-                #     course_id_input = int(input())
-                #     self.course_controller.remove_student_from_course(student_id_input, course_id_input)
-                #     print("Student unenrolled!")
-                # except Exception:
-                #     print("error unenrolling student")
                 self.controller.navigate(CourseMenu(self.controller))
             case '8':
                 print("View all the students in a Course")
@@ -154,13 +145,7 @@ class CourseMenu(Menu):
                 for course in courses:
                     print(course.print_course())
                 print('\n')
-                # try:
-                #     print("Enter the id of the student you want to view")
-                #     student_id_input = int(input())
-                #     self.course_controller.student_enrollment_courses(student_id_input)
-                #     print("Successfully found student enrollment courses")
-                # except Exception:
-                #     print("error finding student enrollment courses")
+
                 self.controller.navigate(CourseMenu(self.controller))
             case '10':
                 self.controller.navigate(MainMenu(self.controller))
@@ -169,24 +154,3 @@ class CourseMenu(Menu):
             case _:
                 print("Invalid choice, please try again.")
                 self.controller.navigate(CourseMenu(self.controller))
-                
-    # def render_course(self) -> None:
-    #     print("Welcome to the Specific Course Menu. Please select an option:")
-    #     print("1. Add a student to this course")
-    #     print("2. Remove a Student from this course")
-    #     print("3. Go Back to the Main Menu")
-    #     user_input = input().lower
-    #     match user_input:
-    #         case '1':
-    #             #TODO
-    #             pass
-    #         case '2':
-    #             #TODO
-    #             pass
-    #         case '3':
-    #             from Controller.Menus.MainMenu import MainMenu
-    #             self.controller.navigate(MainMenu(self.controller))
-    #         case _:
-    #             print("Invalid choice, please try again")
-    #             self.controller.navigate(CourseMenu(self.controller))
-        

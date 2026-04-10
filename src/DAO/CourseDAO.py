@@ -96,7 +96,7 @@ class CourseDAO:
                 # sql = "INSERT INTO course (course_data) VALUES (%(course_data)s)", {"course_data": course_data}
                 cursor.execute("INSERT INTO course (name, professor_id) VALUES (%(name)s, %(professor_id)s)", {'name': course_name, 'professor_id': course_professor_id})
                 new_id = cursor.lastrowid
-                course_data.set_course_id(new_id)
+                course_data.set_course_id(new_id) 
                 for student in course_students: #for every student listed in the new course, add that pair into the enrollment table
                     cursor.execute("INSERT INTO enrollment (student_id, course_id) VALUES (%(student_id)s, %(course_id)s)", {'student_id': student.get_student_id(), 'course_id': new_id})
             
@@ -144,7 +144,7 @@ class CourseDAO:
             cursor.execute("SELECT * FROM enrollment WHERE student_id = %s", [student_id]) #get all courses where found student_id
             
             for row in cursor:
-                course_ids.append(row.get('course_id'))
+                course_ids.append(row.get('course_id')) #type: ignore
         return self.get_courses_from_ids(course_ids)
 
 
@@ -155,7 +155,7 @@ class CourseDAO:
             cursor: MySQLCursor = connection.cursor(dictionary=True) # type: ignore
             cursor.execute("SELECT * FROM enrollment WHERE course_id = %s", [course_id]) # get all students where found course_id
             for row in cursor:
-                student_ids.append(row.get('student_id'))
+                student_ids.append(row.get('student_id')) #type: ignore
         return self.get_students_from_ids(student_ids)
 
         

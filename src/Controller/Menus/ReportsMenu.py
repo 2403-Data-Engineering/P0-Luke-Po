@@ -7,7 +7,7 @@ from Model.Professor import Professor
 from .Menu import Menu
 import json
 from mdutils.mdutils import MdUtils
-from mdutils.tools.Table import Table
+from Scripts.PrintReport import PrintReport
 
 class ReportsMenu(Menu):
     def __init__(self, controller):
@@ -27,13 +27,16 @@ class ReportsMenu(Menu):
             case '1':
                 print("printing enrollment report for a student")
                 print("Enter the id of the student")
-                try:
-                    student_id = int(input())
-                    self.print_student_markdown_file(student_id)
-                    print("Successfully printed")
-                except Exception:
-                    print("error finding course's enrollments")
-                
+                # try:
+                student_id: int = int(input())
+                student_dict = self.student_controller.get_student_by_id(student_id)
+                student = Student(student_dict.get('id'), student_dict.get('first_name'), student_dict.get('last_name'), student_dict.get('year'), student_dict.get('major'), student_dict.get('email'))
+                PrintReport.print_student_markdown_file(student, self.course_controller.student_enrollment_courses(student_id))
+                    
+                    # self.print_student_markdown_file(student_id)
+                print("Successfully printed")
+                # except Exception:
+                #     print("error finding the student's enrollments")
                 self.controller.navigate(ReportsMenu(self.controller))
                 
             case '2':
