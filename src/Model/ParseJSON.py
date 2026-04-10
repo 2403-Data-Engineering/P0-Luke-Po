@@ -19,10 +19,10 @@ class ParseJSON:
     @staticmethod
     def parse_course(json_str: str) -> Course:
         data = json.loads(json_str)
+        print(data)
         students = [Student(**s) for s in data.get("students", [])]
         professor = Professor(**data.get("professor", {}))
         return Course(id=data.get("id", 0), name=data.get("name", "Dummy Class"), students=students, professor=professor)
-    
 
     
 

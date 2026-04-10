@@ -33,7 +33,9 @@ class main:
         student_controller = StudentController(student_service)
         course_controller = CourseController(course_service)
         controller = FullRegistrationController(professor_controller, student_controller, course_controller)
+        json_str = '{"id": 5, "name": "WonderClass", "students": [{"id": 2, "first_name": "Luke", "last_name": "Po", "year": 4, "major": "Computer Science", "email": "luke486@revature.net"}, {"id": 4, "first_name": "Dummy", "last_name": "Student", "year": 0, "major": "Physics", "email": "dummys@gmail.com"}], "professor": {"id": 12, "first_name": "Dummy", "last_name": "Professor", "department": "Department", "email": "dummyprofessor@gmail.com"}}'
         
+        # ParseJSON.parse_course(json_str)        
         while(controller.running):
             controller.menu.render()
         

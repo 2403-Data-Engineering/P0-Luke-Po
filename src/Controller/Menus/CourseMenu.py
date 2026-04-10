@@ -36,8 +36,8 @@ class CourseMenu(Menu):
                 self.controller.navigate(CourseMenu(self.controller))
             case '2':
                 print("Creating a Course...")
-                print("Enter a the course you want to create in the format required (JSON):")
-                print("""{"id": 0, "name": "Dummy Class", "students": [{"id": 0, "first_name": "Dummy", "last_name": "Student", "year": 0, "major": "Physics", "email": "dummys@gmail.com"}], "professor": {"id": 1, "first_name": "Dummy", "last_name": "Professor", "department": "Department", "email": "dummyprofessor@gmail.com"}}""")
+                print("Enter a the course you want to create in the format required (in JSON):")
+                print('{"id": 7, "name": "Ooh class", "students": [{"id": 2, "first_name": "Luke", "last_name": "Po", "year": 4, "major": "Computer Science", "email": "luke486@revature.net"}], "professor": {"id": 12, "first_name": "Dummy", "last_name": "Professor", "department": "Department", "email": "dummyprofessor@gmail.com"}}')
 
                 course_input = input()
                 #TODO: Still need to check whether every id is valid and everything is valid                
@@ -56,30 +56,33 @@ class CourseMenu(Menu):
                 course_id_input = int(input()) #get the course_id
                 
                 course : Course = self.course_controller.get_course_by_id(course_id_input) #get the course from its id
-                # if (course is None):
-                #     print("An Error Occured, Navigating back to the Course Menu")
-                # else:
-                #     course.print_course()
+                if (course is None):
+                    print("An Error Occured, Navigating back to the Course Menu")
+                else:
+                    course.print_course()
                 print(course)
+                print('\n')
                 self.controller.navigate(CourseMenu(self.controller))
             case '4':
                 print("Updating a Course...")
-                print("Enter the course you want to update in the format required (JSON):")
-                print("""{"id": 0, "name": "Dummy Class", "students": [{"id": 0, "first_name": "Dummy", "last_name": "Student", "year": 0, "major": "Physics", "email": "dummys@gmail.com"}], "professor": {"id": 0, "first_name": "Dummy", "last_name": "Professor", "department": "Department", "email": "dummyprofessor@gmail.com"}}""")
-                course_input = input()
-                
-                course : Course = ParseJSON.parse_course(course_input)
-                self.course_controller.update_course(course)
-                print("Update Complete!")
-                
+                print("Enter the course you want to update in JSON; It must follow the format required below:")
+                json_str = '{"id": 5, "name": "WonderClass", "students": [{"id": 2, "first_name": "Luke", "last_name": "Po", "year": 4, "major": "Computer Science", "email": "luke486@revature.net"}, {"id": 4, "first_name": "Dummy", "last_name": "Student", "year": 0, "major": "Physics", "email": "dummys@gmail.com"}], "professor": {"id": 12, "first_name": "Dummy", "last_name": "Professor", "department": "Department", "email": "dummyprofessor@gmail.com"}}'
+                try:
+                    course_input = input()
+                    course : Course = ParseJSON.parse_course(course_input)
+                    self.course_controller.update_course(course)
+                    print("Update Complete!")
+                except json.JSONDecodeError:
+                    print("Unable to Parse, Navigating back to the Course Menu")
+                except Exception:
                 # try:
                 #     course : Course = ParseJSON.parse_course(course_input)
                 #     self.course_controller.update_course(course)
                 #     print("Update Complete!")
                 # except json.JSONDecodeError:
-                #     print("Unable to Parse, Navigating back to the Course Menu")
+                #    
                 # except Exception:
-                #     print("An Error Occured, Navigating back to the Course Menu")
+                    print("An Error Occured, Navigating back to the Course Menu")
                 
                 self.controller.navigate(CourseMenu(self.controller))
             #only need id for deletion
@@ -87,18 +90,22 @@ class CourseMenu(Menu):
                 print("Deleting a Course...")
                 print("Enter the course id of the course you want to delete:")
                 print("Course ID")
-                course_input = input()
-                self.course_controller.get_course_service().delete_course(int(course_input))
+                try:
+                    course_input = input()
+                    self.course_controller.get_course_service().delete_course(int(course_input))
+                except Exception:
+                    print('Invalid Input')
                 self.controller.navigate(CourseMenu(self.controller))
             case '6':
                 print("Enter the id of the student you want to enroll")
-                
-                student_id_input = int(input())
-                print("enter the id of the course you want the student to be enrolled in")
-                course_id_input = int(input())
-                self.course_controller.add_student_to_course(student_id_input, course_id_input)
-                print("Student enrolled!")
-                
+                try:
+                    student_id_input = int(input())
+                    print("enter the id of the course you want the student to be enrolled in")
+                    course_id_input = int(input())
+                    self.course_controller.add_student_to_course(student_id_input, course_id_input)
+                    print("Student enrolled!")
+                except Exception:
+                    print("error enrolling student")
                 # try:
                 #     print("Enter the id of the student you want to enroll")
                 #     student_id_input = int(input())
@@ -111,41 +118,45 @@ class CourseMenu(Menu):
                 self.controller.navigate(CourseMenu(self.controller))
             case '7':
                 print("Enter the id of the student you want to unenroll")
-                
-                student_id_input = int(input())
-                print("enter the id of the course you want the student to be unenrolled in")
-                course_id_input = int(input())
-                self.course_controller.remove_student_from_course(student_id_input, course_id_input)
-                print("Student unenrolled!")
-                
+                try:
+                    student_id_input = int(input())
+                    print("enter the id of the course you want the student to be unenrolled in")
+                    course_id_input = int(input())
+                    self.course_controller.remove_student_from_course(student_id_input, course_id_input)
+                    print("Student unenrolled!")
+                except Exception:
+                    "Error trying to unenroll student"
                 self.controller.navigate(CourseMenu(self.controller))
             case '8':
                 print("View all the students in a Course")
                 
                 print("Enter the id of the course you want to view")
-                course_id_input = int(input())
-                students = self.course_controller.course_student_list(course_id_input)
-                print("Successfully found course's enrollments")
-                for student in students:
-                    print('\n')
-                    print(student)
-
+                try:
+                    course_id_input = int(input())
+                    students = self.course_controller.course_student_list(course_id_input)
+                    print("Successfully found course's enrollments")
+                    for student in students:
+                        print('\n')
+                        print(student)
+                except Exception:
+                    print("Error finding all students enrolled into the class")
                 self.controller.navigate(CourseMenu(self.controller))
             case '9':
                 print("Viewing all classes a student has enrolled in")
                 print("Enter the id of the student you want to view")
-                
-                student_id_input = int(input())
-                courses = self.course_controller.student_enrollment_courses(student_id_input)
-                
-                print("Successfully found student enrollment courses")
-                # print(courses)
-                
-                print('\n')
-                for course in courses:
-                    print(course.print_course())
-                print('\n')
+                try:
+                    student_id_input = int(input())
+                    courses = self.course_controller.student_enrollment_courses(student_id_input)
 
+                    print("Successfully found student enrollment courses")
+                    # print(courses)
+
+                    print('\n')
+                    for course in courses:
+                        print(course.print_course())
+                    print('\n')
+                except Exception:
+                    print("Error finding the Students Enrollments")
                 self.controller.navigate(CourseMenu(self.controller))
             case '10':
                 self.controller.navigate(MainMenu(self.controller))
