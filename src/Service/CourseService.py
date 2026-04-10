@@ -1,5 +1,6 @@
 from DAO.CourseDAO import CourseDAO
 from Model.Course import Course
+from Model.Student import Student
 class CourseService:
     """Service layer for business logic related to Course operations."""
     
