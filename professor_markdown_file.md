@@ -16,3 +16,12 @@ Professor Enrollment Report
 
 - LukePo; 2
 - RandomDude; 3
+
+### Ooh class: 
+
+- LukePo; 2
+
+### WonderClass: 
+
+- LukePo; 2
+- DummyStudent; 4
